@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30-Day Hybrid Cybersecurity Lab Plan - Main Index</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .week-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .week-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .week-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .week-subtitle {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .day-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .day-item {
+            padding: 0.5rem 0;
+            color: #6b7280;
+            border-left: 3px solid transparent;
+            padding-left: 1rem;
+            transition: all 0.2s;
+        }
+        .day-item:hover {
+            border-left-color: #2563eb;
+            color: #374151;
+            background-color: #f9fafb;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .week-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .week-link:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                30-Day Hybrid Cybersecurity Lab Plan
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Welcome to your comprehensive guide for building and mastering a hybrid cybersecurity lab environment. This plan outlines daily goals and steps to enhance your red team and blue team skills, from basic VM setup to advanced threat hunting and adversary emulation.
+            </p>
+        </header>
+
+        <!-- Week 1 -->
+        <div class="week-card">
+            <h2 class="week-title">Week 1: Foundation & Setup</h2>
+            <p class="week-subtitle">Days 1-7</p>
+            <ul class="day-list">
+                <li class="day-item">Day 1 — Install Kali Linux Attacker VM</li>
+                <li class="day-item">Day 2 — Install & Configure Windows 10 Target VM</li>
+                <li class="day-item">Day 3 — Install & Configure Windows Server 2019 with Active Directory</li>
+                <li class="day-item">Day 4 — Join Windows 10 Target to the Active Directory Domain</li>
+                <li class="day-item">Day 5 — Active Directory Enumeration with BloodHound & PowerView</li>
+                <li class="day-item">Day 6 — Domain Privilege Escalation</li>
+                <li class="day-item">Day 7 — Domain Persistence Techniques</li>
+            </ul>
+            <a href="cyber-week1.html" class="week-link">Go to Week 1 →</a>
+        </div>
+
+        <!-- Week 2 -->
+        <div class="week-card">
+            <h2 class="week-title">Week 2: Detection & Purple Team Operations</h2>
+            <p class="week-subtitle">Days 8-14</p>
+            <ul class="day-list">
+                <li class="day-item">Day 8 — Detection & Monitoring for Persistence and Privilege Escalation</li>
+                <li class="day-item">Day 9 — Purple Team Simulation: Attack and Detect</li>
+                <li class="day-item">Day 10 — Post-Exploitation Cleanup and Lab Reset</li>
+                <li class="day-item">Day 11 — Stealth Operations: Evading Detection While Attacking</li>
+                <li class="day-item">Day 12 — Stealth Detection Tuning</li>
+                <li class="day-item">Day 13 — Advanced Red vs. Blue Simulation</li>
+                <li class="day-item">Day 14 — Adversary Emulation: Real-World Threat Replication</li>
+            </ul>
+            <a href="cyber-week2.html" class="week-link">Go to Week 2 →</a>
+        </div>
+
+        <!-- Week 3 -->
+        <div class="week-card">
+            <h2 class="week-title">Week 3: Advanced Simulations & Threat Hunting</h2>
+            <p class="week-subtitle">Days 15-21</p>
+            <ul class="day-list">
+                <li class="day-item">Day 15 — Multi-Adversary Challenge</li>
+                <li class="day-item">Day 16 — Endurance Simulation: Extended Operations</li>
+                <li class="day-item">Day 17 — Proactive Threat Hunting</li>
+                <li class="day-item">Day 18 — Adversary Persistence Hunt</li>
+                <li class="day-item">Day 19 — Offensive Persistence Re-Entry</li>
+                <li class="day-item">Day 20 — Full-Scope Campaign Simulation</li>
+                <li class="day-item">Day 21 — After-Action Review & Improvement Plan</li>
+            </ul>
+            <a href="cyber-week3.html" class="week-link">Go to Week 3 →</a>
+        </div>
+
+        <!-- Week 4 -->
+        <div class="week-card">
+            <h2 class="week-title">Week 4+: Hybrid Infrastructure & Grand Finale</h2>
+            <p class="week-subtitle">Days 22-30</p>
+            <ul class="day-list">
+                <li class="day-item">Day 22 — Advanced Lab Kickoff & Environment Upgrade</li>
+                <li class="day-item">Day 23 — Hybrid Attack Chain Exercise</li>
+                <li class="day-item">Day 24 — Cloud-First to On-Prem Pivot Exercise</li>
+                <li class="day-item">Day 25 — Simultaneous Bidirectional Hybrid Attack Challenge</li>
+                <li class="day-item">Day 26 — Multi-Day Persistent Hybrid Threat Simulation</li>
+                <li class="day-item">Day 27 — Full Hybrid Eviction Operation</li>
+                <li class="day-item">Day 28 — Post-Eviction Resilience Test</li>
+                <li class="day-item">Day 29 — Long-Game Deception Operation</li>
+                <li class="day-item">Day 30 — Grand Finale Hybrid Breach Campaign</li>
+            </ul>
+            <a href="cyber-week4.html" class="week-link">Go to Week 4+ →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
