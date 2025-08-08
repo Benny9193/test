@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2 - Install & Configure Windows 10 Target VM | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 2: Install & Configure Windows 10 Target VM
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 1 - Foundation & Setup
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1-day1.html" class="nav-button">← Day 1</a>
+            <a href="cyber-week1-day3.html" class="nav-button">Day 3 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 2 — Install & Configure Windows 10 Target VM</h2>
+            <p class="goal-text">
+                Goal: Set up a Windows 10 Pro target machine with a static IP from the lab plan and verify connectivity with the Kali attacker machine.
+            </p>
+            <h3 class="step-heading">Step 1 — Download Windows 10 ISO</h3>
+            <p class="ml-4">
+                Official ISO from Microsoft: <a href="https://www.microsoft.com/software-download/windows10ISO" target="_blank">https://www.microsoft.com/software-download/windows10ISO</a><br>
+                Choose <code class="bg-gray-100 p-1 rounded">Windows 10 64-bit</code>.
+            </p>
+            <h3 class="step-heading">Step 2 — Create the VM</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>VirtualBox: New VM → Name: <code class="bg-gray-100 p-1 rounded">Win10-Target</code> → Type: <code class="bg-gray-100 p-1 rounded">Microsoft Windows</code> → Version: <code class="bg-gray-100 p-1 rounded">Windows 10 (64-bit)</code><br>
+                RAM: 2 GB minimum (4 GB recommended), Disk: 40 GB+</li>
+                <li>VMware: Create New Virtual Machine → Installer disc image (ISO) → Choose ISO<br>
+                Similar RAM and disk allocation</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Configure Networking</h3>
+            <p class="ml-4">
+                Use only <code class="bg-gray-100 p-1 rounded">one network adapter</code> set to <code class="bg-gray-100 p-1 rounded">Host-Only</code> (VirtualBox) or your chosen Host-Only network (VMware) to ensure isolation from the internet.
+            </p>
+            <h3 class="step-heading">Step 4 — Install Windows 10</h3>
+            <p class="ml-4">
+                Boot from the ISO and follow installation prompts.<br>
+                If asked for a product key, select <code class="bg-gray-100 p-1 rounded">I don't have a product key</code>.<br>
+                Choose <code class="bg-gray-100 p-1 rounded">Windows 10 Pro</code> for additional administrative and domain features.
+            </p>
+            <h3 class="step-heading">Step 5 — Assign Static IP</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>IP: <code class="bg-gray-100 p-1 rounded">192.168.56.11</code></li>
+                <li>Subnet Mask: <code class="bg-gray-100 p-1 rounded">255.255.255.0</code></li>
+                <li>Default Gateway: <code class="bg-gray-100 p-1 rounded">leave blank</code></li>
+                <li>Preferred DNS Server: <code class="bg-gray-100 p-1 rounded">192.168.56.20</code> (future AD server)</li>
+                <li>Path: Control Panel → Network and Sharing Center → Change adapter settings → Right-click adapter → Properties → Internet Protocol Version 4 (TCP/IPv4) → Properties</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Test Connectivity</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>From <code class="bg-gray-100 p-1 rounded">Windows</code>:<br><code class="bg-gray-100 p-1 rounded">ping 192.168.56.10</code></li>
+                <li>From <code class="bg-gray-100 p-1 rounded">Kali</code>:<br><code class="bg-gray-100 p-1 rounded">ping 192.168.56.11</code></li>
+            </ul>
+            <p class="ml-4">
+                Both should succeed. Pinging 8.8.8.8 should fail, confirming no internet access.
+            </p>
+            <h3 class="step-heading">End of Day 2 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Windows 10 Pro VM installed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Static IP assigned</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Communication with Kali verified</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Lab remains isolated from the internet</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1-day1.html" class="nav-button">← Day 1</a>
+            <a href="cyber-week1-day3.html" class="nav-button">Day 3 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

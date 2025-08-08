@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 23 - Hybrid Attack Chain Exercise | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 23: Hybrid Attack Chain Exercise
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 4+ - Hybrid Infrastructure & Grand Finale
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week4-day22.html" class="nav-button">← Day 22</a>
+            <a href="cyber-week4-day24.html" class="nav-button">Day 24 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 23 — Hybrid Attack Chain Exercise</h2>
+            <p class="goal-text">
+                Goal: Simulate a red team intrusion starting in the on-premises environment and pivoting into the connected cloud infrastructure, while the blue team detects and responds across both environments.
+            </p>
+            <h3 class="step-heading">Step 1 — Attack Scenario Design (Red Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Plan an attack chain that begins with:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Compromise of an on-prem Windows workstation or server.</li>
+                        <li>Enumeration of hybrid AD or cloud-connected assets.</li>
+                        <li>Pivot into the cloud environment via: Compromised Azure AD credentials, Token theft or identity federation abuse.</li>
+                    </ul>
+                </li>
+                <li>Final objective: Access cloud-hosted sensitive data or resources.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Environment Preparation (Blue Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Confirm monitoring covers: On-prem logs (Sysmon, Security Event Logs, WEF), Cloud logs (Azure Sentinel, AWS GuardDuty, CloudTrail)</li>
+                <li>Set correlation rules for: Hybrid logon patterns, Cross-environment lateral movement, Unusual API calls from cloud admin accounts</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Red Team Execution</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Initial access on-prem (phishing simulation or credential reuse).</li>
+                <li>Enumerate hybrid identity sync configurations.</li>
+                <li>Capture valid cloud credentials or tokens.</li>
+                <li>Access cloud management console or APIs.</li>
+                <li>Perform high-value action (e.g., create cloud admin account, access storage buckets).</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Blue Team Detection & Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Detect on-prem compromise indicators: Event ID 4624 (logon) anomalies, Sysmon Event ID 1 and 3 for process/network activity</li>
+                <li>Detect cloud pivot indicators: Azure sign-ins from unusual IPs or devices, Creation of new privileged cloud accounts, Unusual cloud API usage</li>
+                <li>Contain by: Disabling compromised accounts, Revoking cloud sessions and tokens, Isolating affected systems</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Debrief</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team: Present full hybrid attack chain, including timeline and techniques.</li>
+                <li>Blue team: Present detection timeline, containment actions, and missed events.</li>
+                <li>Jointly define improvements to: Cross-environment monitoring, Incident response for hybrid threats</li>
+            </ul>
+            <h3 class="step-heading">End of Day 23 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Successful simulation of an on-prem to cloud pivot</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Multiple detection points triggered across both environments</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documented improvements to hybrid attack detection and response</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week4-day22.html" class="nav-button">← Day 22</a>
+            <a href="cyber-week4-day24.html" class="nav-button">Day 24 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

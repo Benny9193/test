@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 16 - Endurance Simulation: Extended Operations | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 16: Endurance Simulation: Extended Operations
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 3 - Advanced Simulations & Threat Hunting
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week3-day15.html" class="nav-button">← Day 15</a>
+            <a href="cyber-week3-day17.html" class="nav-button">Day 17 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 16 — Endurance Simulation: Extended Operations</h2>
+            <p class="goal-text">
+                Goal: Conduct a continuous, 4–6 hour red vs. blue lab simulation with multiple intrusion attempts happening at unpredictable times to test both teams' sustained effectiveness and adaptability over extended operations.
+            </p>
+            <h3 class="step-heading">Step 1 — Define Simulation Timeline</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Schedule the exercise over a 4–6 hour window.</li>
+                <li>Plan 4–6 separate intrusion events, spaced irregularly (e.g., 20 minutes apart, then a 1-hour gap, then two quick attacks).</li>
+                <li>Assign different objectives to each intrusion: Persistence deployment, Privilege escalation, Lateral movement, Data exfiltration simulation, Stealth reconnaissance</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Red Team Preparation</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Develop varied attack plans for each event:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Mix high-noise and stealthy tactics.</li>
+                        <li>Alternate between known and novel TTPs.</li>
+                        <li>Use different user accounts, hosts, and persistence methods.</li>
+                    </ul>
+                </li>
+                <li>Randomize execution order so attacks are unpredictable.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Blue Team Setup</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Verify logging (Sysmon, WEF, PowerShell) and alerting are active.</li>
+                <li>Prepare incident tracking sheets to record: Time of detection, Event ID(s), Response actions taken, Time to contain/eradicate threat</li>
+                <li>Ensure monitoring dashboards or SIEM queries are pre-loaded.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Execution</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team begins attacks at pre-determined but concealed intervals.</li>
+                <li>Blue team actively monitors and responds in real time.</li>
+                <li>Maintain operational tempo without breaks to simulate fatigue factors.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Adaptation Mid-Exercise</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team changes tactics mid-stream if a pattern is detected by blue team.</li>
+                <li>Blue team adjusts monitoring focus based on observed red team activity.</li>
+                <li>Both teams document decision-making under pressure.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Debrief and Analysis</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Review: Total number of intrusion attempts detected vs. missed, Average detection and response times, Impact of fatigue on decision-making and reaction speed.</li>
+                <li>Identify: Most effective red team tactics under extended pressure, Blue team's strongest and weakest detection areas.</li>
+                <li>Update detection rules, response playbooks, and attack strategies accordingly.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 16 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>All planned intrusion events executed across the full time window</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team maintained operational monitoring without lapses</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Detailed performance metrics captured for both teams</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Updated tactics and playbooks reflecting lessons learned from extended operations</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week3-day15.html" class="nav-button">← Day 15</a>
+            <a href="cyber-week3-day17.html" class="nav-button">Day 17 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

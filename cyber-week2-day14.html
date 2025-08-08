@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 14 - Adversary Emulation: Real-World Threat Replication | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 14: Adversary Emulation: Real-World Threat Replication
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 2 - Detection & Purple Team Operations
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week2-day13.html" class="nav-button">← Day 13</a>
+            <a href="cyber-week2.html" class="nav-button">Back to Week 2</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 14 — Adversary Emulation: Real-World Threat Replication</h2>
+            <p class="goal-text">
+                Goal: Select a real-world APT group or ransomware actor known for targeting Windows environments, study their tactics, techniques, and procedures (TTPs) from the MITRE ATT&CK framework, and replicate their behaviors in your lab.local domain to test offensive execution and defensive detection.
+            </p>
+            <h3 class="step-heading">Step 1 — Choose an Adversary Profile</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Examples of groups to emulate:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>APT29 (Cozy Bear) — stealthy espionage group targeting governments and enterprises.</li>
+                        <li>FIN7 — financially motivated group with advanced phishing and persistence.</li>
+                        <li>Conti Ransomware Group — high-impact ransomware operators.</li>
+                    </ul>
+                </li>
+                <li>Select one adversary whose TTPs align with the skills and tools available in your lab.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Research TTPs</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Use these resources: MITRE ATT&CK, Threat intelligence reports from vendors like CrowdStrike, Mandiant, and CISA.</li>
+                <li>Map the chosen adversary's known TTPs to ATT&CK IDs.</li>
+                <li>Categorize into stages: Initial Access, Execution, Persistence, Privilege Escalation, Defense Evasion, Credential Access, Discovery, Lateral Movement, Collection, Exfiltration</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Adapt TTPs for the Lab</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Replace destructive payloads with benign scripts to avoid damaging your environment.</li>
+                <li>Example adaptations: Instead of ransomware encryption, simulate by zipping files. Instead of exfiltrating real data, copy harmless test data.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Execute the Emulation Plan (Red Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Follow the chosen group's TTP chain step-by-step in your lab.</li>
+                <li>Use the same tools or equivalent open-source alternatives.</li>
+                <li>Record: Command lines, Execution times, Expected detection points</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Monitor and Detect (Blue Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Use Sysmon, Event Viewer, and WEF to monitor for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Indicators of compromise (IOCs) matching the adversary profile.</li>
+                        <li>Specific event IDs from your Day 12 tuning.</li>
+                        <li>New behaviors that were not previously seen in your lab.</li>
+                    </ul>
+                </li>
+                <li>Compare detected vs. missed activity.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Debrief and Improve</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Document the full emulation: TTPs tested, Detection successes and failures, Recommendations for improving monitoring and response</li>
+                <li>Update your detection rules to address missed techniques.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 14 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>One real-world adversary profile selected and mapped to ATT&CK</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Safe lab-friendly replication of key TTPs executed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team detection analysis completed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Detection rules and response processes updated</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week2-day13.html" class="nav-button">← Day 13</a>
+            <a href="cyber-week3.html" class="nav-button">Week 3 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

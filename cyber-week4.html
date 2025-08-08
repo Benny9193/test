@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4+ - Hybrid Infrastructure & Grand Finale | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+        .finale-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .finale-card .day-title {
+            color: white;
+        }
+        .finale-card .goal-text {
+            color: #f3f4f6;
+        }
+        .finale-card .step-heading {
+            color: white;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Week 4+: Hybrid Infrastructure & Grand Finale
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Days 22-30 introduce hybrid cloud-on-premises environments, advanced multi-day campaigns, sophisticated evasion operations, and culminate in a comprehensive final challenge that tests all skills developed over the 30-day program.
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week3.html" class="nav-button">← Week 3</a>
+            <a href="cyber-index.html" class="nav-button">Back to Index</a>
+        </div>
+
+        <!-- Day 22 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week4-day22.html">Day 22 — Advanced Lab Kickoff & Environment Upgrade</a></h2>
+            <p class="goal-text">
+                Goal: Set up the upgraded lab environment for the next advanced simulation cycle, expanding beyond the Day 1–21 Windows hacking bootcamp by integrating larger enterprise-scale elements, cloud or hybrid infrastructure, and new adversary emulation capabilities.
+            </p>
+            <h3 class="step-heading">Step 1 — Lab Expansion Planning</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Define the scope for the upgraded environment:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Number of hosts (Windows, Linux, cloud)</li>
+                        <li>Network segmentation (internal, DMZ, cloud connectivity)</li>
+                        <li>Active Directory forest/domain complexity</li>
+                    </ul>
+                </li>
+                <li>Map objectives for the new training cycle:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>More complex multi-stage intrusions</li>
+                        <li>Multi-adversary simultaneous campaigns</li>
+                        <li>Cross-platform attack vectors</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Infrastructure Upgrades</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Add new systems:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>At least one Linux server for cross-platform targeting</li>
+                        <li>A cloud-connected Windows Server (Azure or AWS integration)</li>
+                        <li>Workstations with varied OS versions for realistic diversity</li>
+                    </ul>
+                </li>
+                <li>Implement VLANs or virtual networks to simulate enterprise segmentation.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Cloud Integration</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Deploy a small cloud lab:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Azure Active Directory or hybrid AD sync</li>
+                        <li>Cloud-hosted Windows and Linux VMs</li>
+                        <li>Simulated SaaS applications for attack surfaces</li>
+                    </ul>
+                </li>
+                <li>Prepare cloud monitoring tools (Azure Sentinel, AWS GuardDuty, etc.).</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — New Adversary Emulation Playbooks</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Select additional threat actors from MITRE ATT&CK to target cloud and hybrid environments.</li>
+                <li>Build red team playbooks for: Cloud credential theft, Identity federation attacks, Cloud persistence mechanisms</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Detection Enhancements</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Extend Sysmon and logging policies to new on-prem and cloud systems.</li>
+                <li>Integrate cloud-native logging (Azure Log Analytics, AWS CloudTrail) into central monitoring.</li>
+                <li>Create correlation rules for hybrid attack paths.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Validation & Baseline</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Perform initial red team tests on new infrastructure.</li>
+                <li>Blue team records baseline activity and validates visibility across all environments.</li>
+                <li>Confirm detection triggers for both on-prem and cloud events.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 22 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Upgraded lab with on-prem, cloud, and hybrid systems operational</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Adversary playbooks prepared for advanced scenarios</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Monitoring and detection extended to all environments</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Baseline established for the next advanced simulation cycle</div>
+            </div>
+        </div>
+
+        <!-- Day 23 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week4-day23.html">Day 23 — Hybrid Attack Chain Exercise</a></h2>
+            <p class="goal-text">
+                Goal: Simulate a red team intrusion starting in the on-premises environment and pivoting into the connected cloud infrastructure, while the blue team detects and responds across both environments.
+            </p>
+            <h3 class="step-heading">Step 1 — Attack Scenario Design (Red Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Plan an attack chain that begins with:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Compromise of an on-prem Windows workstation or server.</li>
+                        <li>Enumeration of hybrid AD or cloud-connected assets.</li>
+                        <li>Pivot into the cloud environment via: Compromised Azure AD credentials, Token theft or identity federation abuse.</li>
+                    </ul>
+                </li>
+                <li>Final objective: Access cloud-hosted sensitive data or resources.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Environment Preparation (Blue Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Confirm monitoring covers: On-prem logs (Sysmon, Security Event Logs, WEF), Cloud logs (Azure Sentinel, AWS GuardDuty, CloudTrail)</li>
+                <li>Set correlation rules for: Hybrid logon patterns, Cross-environment lateral movement, Unusual API calls from cloud admin accounts</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Red Team Execution</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Initial access on-prem (phishing simulation or credential reuse).</li>
+                <li>Enumerate hybrid identity sync configurations.</li>
+                <li>Capture valid cloud credentials or tokens.</li>
+                <li>Access cloud management console or APIs.</li>
+                <li>Perform high-value action (e.g., create cloud admin account, access storage buckets).</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Blue Team Detection & Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Detect on-prem compromise indicators: Event ID 4624 (logon) anomalies, Sysmon Event ID 1 and 3 for process/network activity</li>
+                <li>Detect cloud pivot indicators: Azure sign-ins from unusual IPs or devices, Creation of new privileged cloud accounts, Unusual cloud API usage</li>
+                <li>Contain by: Disabling compromised accounts, Revoking cloud sessions and tokens, Isolating affected systems</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Debrief</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team: Present full hybrid attack chain, including timeline and techniques.</li>
+                <li>Blue team: Present detection timeline, containment actions, and missed events.</li>
+                <li>Jointly define improvements to: Cross-environment monitoring, Incident response for hybrid threats</li>
+            </ul>
+            <h3 class="step-heading">End of Day 23 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Successful simulation of an on-prem to cloud pivot</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Multiple detection points triggered across both environments</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documented improvements to hybrid attack detection and response</div>
+            </div>
+        </div>
+
+        <!-- Day 24 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week4-day24.html">Day 24 — Cloud-First to On-Prem Pivot Exercise</a></h2>
+            <p class="goal-text">
+                Goal: Simulate a red team intrusion that begins in the cloud environment and pivots into the on-premises infrastructure, testing blue team detection and response across the reverse hybrid attack path.
+            </p>
+            <h3 class="step-heading">Step 1 — Attack Scenario Design (Red Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Plan an attack chain starting with:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Compromise of a cloud-based account (Azure AD or SaaS credentials).</li>
+                        <li>Discovery of hybrid AD sync or VPN access methods.</li>
+                        <li>Pivot into the on-prem environment via: Leveraging synchronized cloud credentials, Exploiting misconfigured identity federation.</li>
+                    </ul>
+                </li>
+                <li>Final objective: Access sensitive on-prem servers or Active Directory Domain Controller.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Environment Preparation (Blue Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Ensure monitoring covers: Cloud logs (Azure Sentinel, AWS GuardDuty, CloudTrail), On-prem logs (Sysmon, Security Event Logs, WEF)</li>
+                <li>Set correlation rules for: Cloud-to-on-prem logon activity, VPN or remote access from compromised cloud accounts, Service account activity anomalies</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Red Team Execution</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Gain access to cloud account credentials (phishing simulation, password spray, token theft).</li>
+                <li>Enumerate cloud services for hybrid connectivity clues.</li>
+                <li>Use VPN, RDP Gateway, or sync credentials to log into on-prem systems.</li>
+                <li>Conduct on-prem reconnaissance to identify high-value targets.</li>
+                <li>Execute privilege escalation or persistence methods locally.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Blue Team Detection & Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Detect cloud compromise indicators: Unusual sign-in locations or devices, Creation of new app registrations or admin roles</li>
+                <li>Detect on-prem pivot indicators: Event ID 4624 with cloud-synced accounts from unusual sources, Sysmon Event ID 3 showing VPN or remote session traffic</li>
+                <li>Contain by: Disabling affected accounts in both cloud and on-prem AD, Terminating active sessions and VPN connections, Isolating on-prem endpoints involved in the intrusion</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Debrief</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team: Present the cloud-first attack chain, pivot techniques, and final objectives.</li>
+                <li>Blue team: Present detection points, response actions, and missed events.</li>
+                <li>Jointly identify monitoring improvements for: Cross-environment authentication, Hybrid identity protections</li>
+            </ul>
+            <h3 class="step-heading">End of Day 24 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Successful simulation of a cloud-to-on-prem pivot</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Detection points triggered in both environments</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documented enhancements to hybrid identity and pivot detection</div>
+            </div>
+        </div>
+
+        <!-- Day 25 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week4-day25.html">Day 25 — Simultaneous Bidirectional Hybrid Attack Challenge</a></h2>
+            <p class="goal-text">
+                Goal: Simulate two coordinated red team intrusions — one starting in the cloud and moving into the on-premises environment, the other starting on-premises and pivoting into the cloud — running concurrently to stress-test blue team detection and response under intersecting hybrid attack paths.
+            </p>
+            <h3 class="step-heading">Step 1 — Attack Scenario Design (Red Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red Team A (Cloud-first): Compromise a cloud account (Azure AD or SaaS credentials), Discover hybrid AD sync or VPN connections, Pivot down to on-prem servers or Domain Controller.</li>
+                <li>Red Team B (On-prem-first): Compromise an on-prem Windows host or service account, Enumerate hybrid AD sync configurations, Pivot upward to access cloud services or consoles.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Environment Preparation (Blue Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Ensure monitoring visibility across: Cloud logs (Azure Sentinel, AWS GuardDuty, CloudTrail), On-prem logs (Sysmon, Security Event Logs, WEF)</li>
+                <li>Set correlation rules for: Simultaneous unusual logons in both environments, Multiple pivot attempts across hybrid boundaries, Service account and admin account activity anomalies</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Concurrent Red Team Execution</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red Team A begins cloud compromise and starts pivoting into on-prem.</li>
+                <li>Red Team B begins on-prem compromise and starts pivoting into cloud.</li>
+                <li>Both teams operate simultaneously, timing key actions to overlap and create confusion.</li>
+                <li>Use both stealth and noisy techniques to complicate blue team analysis.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Blue Team Detection & Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Detect indicators from both attack chains:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Cloud: unusual sign-ins, admin role creation, API anomalies</li>
+                        <li>On-prem: Event ID 4624 anomalies, Sysmon Event ID 3 network connections, new scheduled tasks or registry changes</li>
+                    </ul>
+                </li>
+                <li>Manage simultaneous incident handling: Prioritize highest-risk detections first, Contain compromised accounts and sessions in both environments, Isolate affected endpoints and terminate cloud sessions</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Debrief</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red teams: Present attack chains, pivot techniques, and how they leveraged concurrent timing.</li>
+                <li>Blue team: Present detection timeline, incident prioritization process, and any missed events.</li>
+                <li>Jointly identify improvements for handling multi-front hybrid intrusions.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 25 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Successful simulation of bidirectional hybrid attacks</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Detection points triggered across both attack paths</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documented improvements for managing complex, concurrent incidents</div>
+            </div>
+        </div>
+
+        <!-- Day 26 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week4-day26.html">Day 26 — Multi-Day Persistent Hybrid Threat Simulation</a></h2>
+            <p class="goal-text">
+                Goal: Simulate a coordinated red team campaign lasting multiple days, with persistent access maintained in both cloud and on-prem environments, gradually expanding the attack footprint to test blue team endurance, detection consistency, and threat hunting capabilities under prolonged compromise.
+            </p>
+            <h3 class="step-heading">Step 1 — Campaign Design (Red Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Establish separate footholds in:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Cloud environment via compromised accounts, API tokens, or app registrations.</li>
+                        <li>On-prem environment via local admin accounts, scheduled tasks, or WMI subscriptions.</li>
+                    </ul>
+                </li>
+                <li>Plan gradual escalation over several days:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Day 1–2: Reconnaissance and light privilege escalation.</li>
+                        <li>Day 3–4: Lateral movement and cross-environment pivots.</li>
+                        <li>Day 5+: Persistence reinforcement and simulated data collection.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Blue Team Preparation</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Confirm logging and alerting systems can handle multi-day event collection.</li>
+                <li>Prepare threat hunting queries for: Long-term persistence detection, Gradual privilege creep, Anomalous cross-environment activity.</li>
+                <li>Establish daily review and response cadence.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Red Team Execution</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Deploy persistence in both environments using stealthy techniques from previous exercises.</li>
+                <li>Conduct reconnaissance slowly to avoid detection, mixing in normal user-like behavior.</li>
+                <li>Periodically escalate privileges and pivot into new assets, maintaining operational stealth.</li>
+                <li>Simulate periodic "objective actions" such as accessing sensitive files or cloud storage.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Blue Team Detection & Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Perform daily hunts for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Persistence indicators in registry, scheduled tasks, and WMI subscriptions.</li>
+                        <li>Cloud anomalies such as unusual sign-ins, API calls, or admin role changes.</li>
+                        <li>Hybrid authentication patterns and cross-boundary logons.</li>
+                    </ul>
+                </li>
+                <li>Contain compromised accounts or systems promptly without disrupting ongoing monitoring.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Campaign Endgame</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team stages a final simulated exfiltration or destructive action.</li>
+                <li>Blue team attempts full containment and eradication of all red team footholds.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Debrief</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team: Present full campaign timeline, including stealth measures and persistence strategies.</li>
+                <li>Blue team: Present detection timeline, daily hunt effectiveness, and final eradication results.</li>
+                <li>Jointly identify endurance-related gaps and improvements.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 26 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Persistent access maintained by red team for the planned duration</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team actively hunted and disrupted red team activity throughout</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documented improvements to long-term monitoring and incident response strategies</div>
+            </div>
+        </div>
+
+        <!-- Day 27 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week4-day27.html">Day 27 — Full Hybrid Eviction Operation</a></h2>
+            <p class="goal-text">
+                Goal: Conduct a blue team-led operation to locate and eradicate every red team persistence point and access method in both cloud and on-prem environments, while the red team actively attempts to resist removal and re-establish footholds.
+            </p>
+            <h3 class="step-heading">Step 1 — Blue Team Preparation</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Assemble a complete list of suspected compromised accounts, endpoints, and cloud assets.</li>
+                <li>Prepare enhanced hunting queries for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Registry run keys and uncommon autorun locations</li>
+                        <li>WMI event subscriptions in root\\subscription</li>
+                        <li>Scheduled tasks, especially modified legitimate ones</li>
+                        <li>Group Policy logon scripts</li>
+                        <li>Active Kerberos tickets (Golden/Silver)</li>
+                    </ul>
+                </li>
+                <li>Ensure cloud logs (Azure, AWS, SaaS) and on-prem logs (Sysmon, WEF) are accessible.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Red Team Resistance Planning</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Identify remaining footholds from Day 26.</li>
+                <li>Deploy backup persistence methods that are difficult to detect.</li>
+                <li>Use deceptive tactics to delay blue team removal, such as creating decoy persistence points.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Eviction Execution</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Blue team methodically hunts for and removes persistence on all systems.</li>
+                <li>Red team attempts to: Re-establish persistence using alternate techniques, Exploit any gaps in detection coverage, Blend malicious actions into normal system activity.</li>
+                <li>Blue team tracks and neutralizes each re-entry attempt.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Containment and Credential Hygiene</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Reset or disable all accounts suspected of compromise.</li>
+                <li>Invalidate Kerberos tickets by resetting KRBTGT twice.</li>
+                <li>Rotate cloud API keys and service account credentials.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Verification</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Re-run full persistence hunting queries across both environments.</li>
+                <li>Monitor for any suspicious activity for at least one simulated day after eviction.</li>
+                <li>Confirm no red team-controlled persistence methods remain.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Debrief</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Blue team: Present full list of persistence methods removed, timeline, and challenges faced.</li>
+                <li>Red team: Share which footholds survived the longest and why.</li>
+                <li>Jointly identify improvements in: Detection coverage, Response speed, Resilience against re-entry attempts</li>
+            </ul>
+            <h3 class="step-heading">End of Day 27 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>All red team persistence methods removed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team successfully blocked re-entry attempts</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Clear documentation of eradication process and updated prevention measures</div>
+            </div>
+        </div>
+
+        <!-- Day 28 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week4-day28.html">Day 28 — Post-Eviction Resilience Test</a></h2>
+            <p class="goal-text">
+                Goal: Simulate a delayed red team comeback after the Day 27 eviction, using new tactics to attempt re-infection of the hybrid environment. Test whether the blue team's updated defenses and procedures can prevent reinfection and maintain a clean security posture.
+            </p>
+            <h3 class="step-heading">Step 1 — Red Team Preparation</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Review detection gaps or slow response areas noted during Day 27.</li>
+                <li>Design new persistence and access methods not used previously:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Exploiting overlooked cloud API permissions.</li>
+                        <li>Leveraging legitimate third-party integrations.</li>
+                        <li>Using non-traditional autorun locations.</li>
+                    </ul>
+                </li>
+                <li>Plan for low-noise re-entry to avoid triggering immediate alerts.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Blue Team Readiness Check</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Re-verify that updated detection rules from Day 27 are active.</li>
+                <li>Ensure monitoring is live for: Newly added event IDs or Sysmon filters, Expanded registry and scheduled task coverage, Cloud API and identity event monitoring.</li>
+                <li>Set up a quick-response containment plan for suspected reinfection attempts.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Red Team Re-Entry Attempt</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Deploy stealth access vectors in both cloud and on-prem.</li>
+                <li>Attempt to create new persistence that mimics legitimate system behavior.</li>
+                <li>Slowly escalate privileges while blending in with normal user activity.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Blue Team Detection & Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Actively hunt for anomalies:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Cloud logins from unexpected geolocations or devices.</li>
+                        <li>Low-frequency but suspicious process executions.</li>
+                        <li>Persistence methods in unusual registry paths or script folders.</li>
+                    </ul>
+                </li>
+                <li>Respond quickly to any confirmed foothold attempts: Disable affected accounts, Remove malicious persistence, Isolate endpoints.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Verification</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>After red team operations conclude, perform a full hybrid persistence sweep.</li>
+                <li>Cross-check cloud and on-prem systems for missed access methods.</li>
+                <li>Validate that no red team footholds remain.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Debrief</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team: Share which methods were attempted, which were detected, and which (if any) evaded detection.</li>
+                <li>Blue team: Present detection successes, gaps, and response times.</li>
+                <li>Jointly update defenses to address any remaining weaknesses.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 28 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team prevented or quickly removed all new red team footholds</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>No undetected persistence methods remain after verification</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Updated defenses reflect lessons learned from post-eviction testing</div>
+            </div>
+        </div>
+
+        <!-- Day 29 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week4-day29.html">Day 29 — Long-Game Deception Operation</a></h2>
+            <p class="goal-text">
+                Goal: Test the blue team's ability to detect and respond to extremely subtle, low-activity red team footholds designed to blend seamlessly with legitimate operations over an extended period.
+            </p>
+            <h3 class="step-heading">Step 1 — Red Team Strategy</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Establish persistence mechanisms that mimic normal user or system behavior:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Scheduled tasks disguised as legitimate maintenance jobs.</li>
+                        <li>Registry entries under names matching standard OS or application keys.</li>
+                        <li>Cloud automation scripts with benign-appearing descriptions.</li>
+                    </ul>
+                </li>
+                <li>Space out activity to avoid triggering pattern-based alerts.</li>
+                <li>Use legitimate tools (LOLBins) and processes for execution.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Blue Team Preparation</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Expand anomaly detection baselines to include long-term behavior patterns.</li>
+                <li>Enable advanced logging:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Sysmon with detailed process and network event capture.</li>
+                        <li>Cloud service activity logs with historical trend analysis.</li>
+                    </ul>
+                </li>
+                <li>Prepare for multi-week hunts with periodic log reviews.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Red Team Execution</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Deploy persistence points that activate rarely (e.g., once every few days).</li>
+                <li>Conduct minimal reconnaissance at random intervals.</li>
+                <li>Use data staging methods that appear like standard file transfers or backups.</li>
+                <li>Avoid privilege escalation unless absolutely necessary to maintain access.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Blue Team Threat Hunting</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Perform scheduled deep-dive hunts into:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Rarely used scheduled tasks or registry entries.</li>
+                        <li>Cloud automation scripts or policies with recent modifications.</li>
+                        <li>Processes that run infrequently but consistently over time.</li>
+                    </ul>
+                </li>
+                <li>Compare findings against baseline behaviors to identify outliers.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Containment and Verification</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Isolate suspected persistence mechanisms for further analysis.</li>
+                <li>Remove confirmed malicious footholds while monitoring for fallback methods.</li>
+                <li>Conduct a post-removal watch period to ensure no reactivation occurs.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Debrief</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team: Share concealment techniques, timing patterns, and methods that went undetected.</li>
+                <li>Blue team: Present anomalies found, detection gaps, and time to discovery.</li>
+                <li>Update detection rules to better spot low-frequency, low-noise activity.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 29 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team identified and eradicated long-term low-activity footholds</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Detection coverage improved for rare or disguised malicious activity</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documented strategies for both defending against and executing long-game deception</div>
+            </div>
+        </div>
+
+        <!-- Day 30 - Grand Finale -->
+        <div class="day-card finale-card">
+            <h2 class="day-title"><a href="cyber-week4-day30.html">Day 30 — Grand Finale Hybrid Breach Campaign</a></h2>
+            <p class="goal-text">
+                Goal: Conduct a multi-week, multi-vector red team campaign combining every tactic from Days 1–29 into one continuous hybrid breach operation. The blue team must defend against layered deception, persistence, cloud/on-prem pivots, and staged objectives under realistic pressure.
+            </p>
+            <h3 class="step-heading">Step 1 — Campaign Planning</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red Team:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Create a detailed playbook that blends: Initial access (phishing, credential compromise, service exploitation), Lateral movement in both cloud and on-prem environments, Persistence methods from stealthy to noisy, Long-game deception with low-activity footholds.</li>
+                        <li>Stage multiple objectives across the timeline.</li>
+                    </ul>
+                </li>
+                <li>Blue Team:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Prepare full-spectrum monitoring for all known tactics.</li>
+                        <li>Establish clear escalation and containment procedures.</li>
+                        <li>Assign roles for 24/7 simulated coverage during the campaign.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Initial Breach Phase</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team gains footholds in both environments (cloud and on-prem) within the first simulated days.</li>
+                <li>Use different entry vectors for each to mask coordination.</li>
+                <li>Maintain stealth while beginning reconnaissance.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Escalation and Expansion</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Conduct gradual privilege escalation.</li>
+                <li>Begin selective lateral movement, blending with normal operations.</li>
+                <li>Introduce deception elements to mislead the blue team.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Cross-Environment Pivots</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Pivot from cloud to on-prem and vice versa, using techniques from Days 23–24.</li>
+                <li>Leverage hybrid identity and sync misconfigurations.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Sustained Operations</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Keep persistence active in multiple forms: Long-term low-frequency footholds (Day 29), Redundant high-privilege persistence points.</li>
+                <li>Stage simulated exfiltration or destructive actions at planned intervals.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Blue Team Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Actively hunt daily for indicators across both environments.</li>
+                <li>Manage multiple simultaneous alerts.</li>
+                <li>Adapt to changing TTPs throughout the campaign.</li>
+            </ul>
+            <h3 class="step-heading">Step 7 — Campaign Climax</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team executes a coordinated final push toward high-value objectives.</li>
+                <li>Blue team must prioritize containment and eradicate all red team access.</li>
+            </ul>
+            <h3 class="step-heading">Step 8 — Final Debrief</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team: Present full campaign timeline, objectives, and evasion tactics.</li>
+                <li>Blue team: Present detection points, response metrics, and lessons learned.</li>
+                <li>Jointly compile a master incident report and updated defense roadmap.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 30 Success Criteria:</h3>
+            <div class="ml-4" style="color: white;">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Fully executed multi-phase hybrid campaign.</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Comprehensive blue team detection and response documented.</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Master incident report completed with actionable defense improvements.</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week3.html" class="nav-button">← Week 3</a>
+            <a href="cyber-index.html" class="nav-button">Back to Index</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+            <p class="mt-2 text-sm">🎉 Congratulations on completing the 30-Day Hybrid Cybersecurity Lab Plan! 🎉</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6 - Domain Privilege Escalation | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 6: Domain Privilege Escalation
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 1 - Foundation & Setup
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1-day5.html" class="nav-button">← Day 5</a>
+            <a href="cyber-week1-day7.html" class="nav-button">Day 7 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 6 — Domain Privilege Escalation</h2>
+            <p class="goal-text">
+                Goal: Leverage enumeration results from Day 5 to escalate privileges within the lab.local domain, moving toward Domain Admin access.
+            </p>
+            <h3 class="step-heading">Step 1 — Review BloodHound Data</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Reopen your BloodHound session from Day 5.</li>
+                <li>Look for attack paths leading from your current user to high-value targets (e.g., Domain Admins).</li>
+                <li>Common findings to focus on:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Users with <code class="bg-gray-100 p-1 rounded">GenericAll</code> or <code class="bg-gray-100 p-1 rounded">GenericWrite</code> on high-privilege groups.</li>
+                        <li>Computers with <code class="bg-gray-100 p-1 rounded">Local Admin rights</code> you can access.</li>
+                        <li>Accounts with <code class="bg-gray-100 p-1 rounded">Kerberoastable service tickets</code>.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Exploit Kerberoastable Accounts</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>From Kali, request service tickets:<br><code class="bg-gray-100 p-1 rounded">GetUserSPNs.py lab.local/&lt;user&gt;@lab.local -dc-ip 192.168.56.20</code></li>
+                <li>Crack tickets with Hashcat or John the Ripper:<br><code class="bg-gray-100 p-1 rounded">hashcat -m 13100 hash.txt rockyou.txt</code></li>
+                <li>If successful, use the cracked password for further access.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Abuse Delegation Rights</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>If BloodHound flags <code class="bg-gray-100 p-1 rounded">unconstrained delegation</code>: Gain access to the host. Monitor for TGTs of privileged users.</li>
+                <li>For <code class="bg-gray-100 p-1 rounded">constrained delegation</code>, attempt S4U2Self abuse with tools like Rubeus.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Lateral Movement to Privileged Systems</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Use valid credentials to connect via:<br><code class="bg-gray-100 p-1 rounded">crackmapexec smb 192.168.56.x -u &lt;user&gt; -p &lt;pass&gt; --shares</code></li>
+                <li>Deploy PsExec or WinRM (evil-winrm) to access target systems where you have admin rights.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Escalate to Domain Admin</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Once on a host with high privileges, dump credentials from LSASS:<br><code class="bg-gray-100 p-1 rounded">Invoke-Mimikatz -Command "privilege::debug sekurlsa::logonpasswords"</code></li>
+                <li>Use captured credentials to access the Domain Controller.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Document the Attack Path</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Record each step from initial user to Domain Admin.</li>
+                <li>Save commands, outputs, and any cracked credentials for reference.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 6 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>At least one successful privilege escalation path executed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Domain Admin or equivalent high-level access achieved</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Full attack chain documented</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1-day5.html" class="nav-button">← Day 5</a>
+            <a href="cyber-week1-day7.html" class="nav-button">Day 7 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

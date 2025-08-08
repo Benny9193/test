@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 24 - Cloud-First to On-Prem Pivot Exercise | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 24: Cloud-First to On-Prem Pivot Exercise
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 4+ - Hybrid Infrastructure & Grand Finale
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week4-day23.html" class="nav-button">← Day 23</a>
+            <a href="cyber-week4-day25.html" class="nav-button">Day 25 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 24 — Cloud-First to On-Prem Pivot Exercise</h2>
+            <p class="goal-text">
+                Goal: Simulate a red team intrusion that begins in the cloud environment and pivots into the on-premises infrastructure, testing blue team detection and response across the reverse hybrid attack path.
+            </p>
+            <h3 class="step-heading">Step 1 — Attack Scenario Design (Red Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Plan an attack chain starting with:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Compromise of a cloud-based account (Azure AD or SaaS credentials).</li>
+                        <li>Discovery of hybrid AD sync or VPN access methods.</li>
+                        <li>Pivot into the on-prem environment via: Leveraging synchronized cloud credentials, Exploiting misconfigured identity federation.</li>
+                    </ul>
+                </li>
+                <li>Final objective: Access sensitive on-prem servers or Active Directory Domain Controller.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Environment Preparation (Blue Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Ensure monitoring covers: Cloud logs (Azure Sentinel, AWS GuardDuty, CloudTrail), On-prem logs (Sysmon, Security Event Logs, WEF)</li>
+                <li>Set correlation rules for: Cloud-to-on-prem logon activity, VPN or remote access from compromised cloud accounts, Service account activity anomalies</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Red Team Execution</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Gain access to cloud account credentials (phishing simulation, password spray, token theft).</li>
+                <li>Enumerate cloud services for hybrid connectivity clues.</li>
+                <li>Use VPN, RDP Gateway, or sync credentials to log into on-prem systems.</li>
+                <li>Conduct on-prem reconnaissance to identify high-value targets.</li>
+                <li>Execute privilege escalation or persistence methods locally.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Blue Team Detection & Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Detect cloud compromise indicators: Unusual sign-in locations or devices, Creation of new app registrations or admin roles</li>
+                <li>Detect on-prem pivot indicators: Event ID 4624 with cloud-synced accounts from unusual sources, Sysmon Event ID 3 showing VPN or remote session traffic</li>
+                <li>Contain by: Disabling affected accounts in both cloud and on-prem AD, Terminating active sessions and VPN connections, Isolating on-prem endpoints involved in the intrusion</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Debrief</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team: Present the cloud-first attack chain, pivot techniques, and final objectives.</li>
+                <li>Blue team: Present detection points, response actions, and missed events.</li>
+                <li>Jointly identify monitoring improvements for: Cross-environment authentication, Hybrid identity protections</li>
+            </ul>
+            <h3 class="step-heading">End of Day 24 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Successful simulation of a cloud-to-on-prem pivot</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Detection points triggered in both environments</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documented enhancements to hybrid identity and pivot detection</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week4-day23.html" class="nav-button">← Day 23</a>
+            <a href="cyber-week4-day25.html" class="nav-button">Day 25 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

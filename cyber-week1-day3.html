@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3 - Install & Configure Windows Server 2019 with Active Directory | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 3: Install & Configure Windows Server 2019 with Active Directory
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 1 - Foundation & Setup
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1-day2.html" class="nav-button">← Day 2</a>
+            <a href="cyber-week1-day4.html" class="nav-button">Day 4 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 3 — Install & Configure Windows Server 2019 with Active Directory</h2>
+            <p class="goal-text">
+                Goal: Set up a Windows Server 2019 machine as a Domain Controller (DC) with DNS for your lab's Active Directory environment, assign it the static IP from the plan, and ensure it communicates with Kali and the Windows 10 target.
+            </p>
+            <h3 class="step-heading">Step 1 — Download Windows Server 2019 ISO</h3>
+            <p class="ml-4">
+                Official ISO from Microsoft Evaluation Center: <a href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019" target="_blank">https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019</a><br>
+                Choose the ISO file, <code class="bg-gray-100 p-1 rounded">Standard or Datacenter</code> edition.
+            </p>
+            <h3 class="step-heading">Step 2 — Create the VM</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>VirtualBox: New VM → Name: <code class="bg-gray-100 p-1 rounded">Win2019-AD</code> → Type: <code class="bg-gray-100 p-1 rounded">Microsoft Windows</code> → Version: <code class="bg-gray-100 p-1 rounded">Windows 2019 (64-bit)</code><br>
+                RAM: 2–4 GB (more if running multiple services), Disk: 40 GB+</li>
+                <li>VMware: Create New Virtual Machine → Installer disc image (ISO) → Choose ISO<br>
+                Same RAM and disk allocation</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Configure Networking</h3>
+            <p class="ml-4">
+                Single network adapter on <code class="bg-gray-100 p-1 rounded">Host-Only</code> network. This matches the IP plan's isolated lab network.
+            </p>
+            <h3 class="step-heading">Step 4 — Install Windows Server 2019</h3>
+            <p class="ml-4">
+                Boot from ISO<br>
+                Select <code class="bg-gray-100 p-1 rounded">Windows Server 2019 Standard (Desktop Experience)</code><br>
+                Follow prompts to create an admin password
+            </p>
+            <h3 class="step-heading">Step 5 — Assign Static IP</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>IP: <code class="bg-gray-100 p-1 rounded">192.168.56.20</code></li>
+                <li>Subnet Mask: <code class="bg-gray-100 p-1 rounded">255.255.255.0</code></li>
+                <li>Default Gateway: <code class="bg-gray-100 p-1 rounded">leave blank</code></li>
+                <li>Preferred DNS Server: <code class="bg-gray-100 p-1 rounded">127.0.0.1</code> (it will be the DNS server)</li>
+                <li>Path: Control Panel → Network and Sharing Center → Change adapter settings → Right-click adapter → Properties → Internet Protocol Version 4 (TCP/IPv4) → Properties</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Install Active Directory Domain Services (AD DS)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Open <code class="bg-gray-100 p-1 rounded">Server Manager</code></li>
+                <li>Click <code class="bg-gray-100 p-1 rounded">Add roles and features</code></li>
+                <li>Choose <code class="bg-gray-100 p-1 rounded">Role-based or feature-based installation</code></li>
+                <li>Select <code class="bg-gray-100 p-1 rounded">Active Directory Domain Services</code></li>
+                <li>Accept dependencies and install</li>
+            </ul>
+            <h3 class="step-heading">Step 7 — Promote Server to Domain Controller</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>In Server Manager, click the yellow warning flag → <code class="bg-gray-100 p-1 rounded">Promote this server to a domain controller</code></li>
+                <li>Create a <code class="bg-gray-100 p-1 rounded">new forest</code>: Root domain name: <code class="bg-gray-100 p-1 rounded">lab.local</code></li>
+                <li>Set a Directory Services Restore Mode (DSRM) password</li>
+                <li>Accept defaults for DNS and NetBIOS</li>
+                <li>Install and reboot</li>
+            </ul>
+            <h3 class="step-heading">Step 8 — Verify & Test</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>From <code class="bg-gray-100 p-1 rounded">Windows 10 Target</code>:<br><code class="bg-gray-100 p-1 rounded">ping 192.168.56.20</code><br><code class="bg-gray-100 p-1 rounded">nslookup lab.local</code></li>
+                <li>From <code class="bg-gray-100 p-1 rounded">Kali</code>:<br><code class="bg-gray-100 p-1 rounded">ping 192.168.56.20</code></li>
+            </ul>
+            <p class="ml-4">
+                Ensure both Windows machines can resolve domain names via the AD server's DNS.
+            </p>
+            <h3 class="step-heading">End of Day 3 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Server 2019 installed with Desktop Experience</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Static IP assigned</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>AD DS installed and server promoted to DC</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>DNS functioning within the lab</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Connectivity confirmed between Kali, Windows 10, and Server 2019</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1-day2.html" class="nav-button">← Day 2</a>
+            <a href="cyber-week1-day4.html" class="nav-button">Day 4 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

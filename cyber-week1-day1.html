@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1 - Install Kali Linux Attacker VM | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 1: Install Kali Linux Attacker VM
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 1 - Foundation & Setup
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1.html" class="nav-button">← Back to Week 1</a>
+            <a href="cyber-week1-day2.html" class="nav-button">Day 2 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 1 — Install Kali Linux Attacker VM</h2>
+            <p class="goal-text">
+                Goal: Install VirtualBox or VMware and set up a Kali Linux attacker VM with secure, isolated networking and a static IP for predictable lab operations.
+            </p>
+            <h3 class="step-heading">Step 1 — Install Your Virtualization Platform</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Option A: <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">VirtualBox Download</a> (Free, lightweight)</li>
+                <li>Option B: <a href="https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html" target="_blank">VMware Workstation Player</a> (Free for non-commercial use, smoother performance)</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Download Kali Linux</h3>
+            <p class="ml-4">
+                Get the latest <a href="https://www.kali.org/get-kali/#kali-virtual-machines" target="_blank">Kali Linux VirtualBox or VMware image</a>. Download the image that matches your virtualization software.
+            </p>
+            <h3 class="step-heading">Step 3 — Import Kali into Your Virtualization Software</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>In VirtualBox: File → Import Appliance → select the .ova file.</li>
+                <li>In VMware: Open a Virtual Machine → select the .vmx file.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Initial Setup</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Boot Kali and log in: Username: <code class="bg-gray-100 p-1 rounded">kali</code> Password: <code class="bg-gray-100 p-1 rounded">kali</code></li>
+                <li>Update your system:<br><code class="bg-gray-100 p-1 rounded">sudo apt update && sudo apt upgrade -y</code></li>
+                <li>Install common tools:<br><code class="bg-gray-100 p-1 rounded">sudo apt install bloodhound neo4j crackmapexec impacket-scripts -y</code></li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Configure Host-Only Networking</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Create a Host-Only network in VirtualBox or VMware.</li>
+                <li>Assign Kali a static IP (e.g., 192.168.56.10, subnet 255.255.255.0, no gateway).</li>
+                <li>Ensure Windows VMs will be in the same subnet later for direct communication.</li>
+            </ul>
+            <h3 class="step-heading">Completion Checklist:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Virtualization software installed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Kali Linux VM imported and updated</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Host-Only network created and Kali assigned a static IP</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Internet access blocked from lab network</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1.html" class="nav-button">← Back to Week 1</a>
+            <a href="cyber-week1-day2.html" class="nav-button">Day 2 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

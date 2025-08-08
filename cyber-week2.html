@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2 - Detection & Purple Team Operations | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Week 2: Detection & Purple Team Operations
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Days 8-14 focus on implementing detection and monitoring capabilities, conducting purple team exercises, cleaning and resetting your lab, mastering stealth techniques, and emulating real-world adversary tactics in your environment.
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1.html" class="nav-button">← Week 1</a>
+            <a href="cyber-week3.html" class="nav-button">Week 3 →</a>
+        </div>
+
+        <!-- Day 8 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week2-day8.html">Day 8 — Detection & Monitoring for Persistence and Privilege Escalation</a></h2>
+            <p class="goal-text">
+                Goal: Implement logging and monitoring in the lab.local domain to detect the persistence methods and privilege escalation techniques practiced in previous days.
+            </p>
+            <h3 class="step-heading">Step 1 — Install and Configure Sysmon</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Download Sysmon from Microsoft Sysinternals: <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon" target="_blank">https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon</a></li>
+                <li>Install with a recommended config (SwiftOnSecurity's config is popular):<br><code class="bg-gray-100 p-1 rounded">sysmon -accepteula -i sysmonconfig.xml</code></li>
+                <li>Ensure Sysmon is set to start automatically after reboot.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Enable PowerShell Logging</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>On each machine, enable: Module Logging, Script Block Logging, Transcription</li>
+                <li>Group Policy path:<br><code class="bg-gray-100 p-1 rounded">Computer Configuration → Administrative Templates → Windows PowerShell</code></li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Configure Windows Event Forwarding (WEF)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Set the Domain Controller as the event collector.</li>
+                <li>Configure source machines (Windows 10 target, other domain systems) to forward relevant event logs: Security, Microsoft-Windows-Sysmon/Operational, Windows PowerShell</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Detection for Persistence Methods</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Monitor for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Scheduled Task Creation: Event ID 4698</li>
+                        <li>Registry Run Key Changes: Sysmon Event ID 13</li>
+                        <li>WMI Event Subscription: Event ID 5861</li>
+                        <li>Group Policy Script Changes: Event ID 5136 (Directory Service Changes)</li>
+                    </ul>
+                </li>
+                <li>Set up alerts in your SIEM or Event Viewer filters.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Detection for Privilege Escalation</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Monitor for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Kerberoasting Activity: Event ID 4769 (Service Ticket Requests)</li>
+                        <li>Pass-the-Hash/Ticket: Event IDs 4624 (logon) with unusual logon types (e.g., Type 3, 9, 10)</li>
+                        <li>LSASS Access: Sysmon Event ID 10 (Process Access to LSASS)</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Test Your Monitoring</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Re-run one or two persistence methods from Day 7.</li>
+                <li>Trigger a simple privilege escalation attempt.</li>
+                <li>Confirm that logs appear in Sysmon and Event Viewer.</li>
+                <li>Verify events are forwarded to the DC collector if WEF is enabled.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 8 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Sysmon installed and configured on all lab systems</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>PowerShell logging enabled</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>WEF configured and operational</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Alerts or filters in place for persistence and privilege escalation indicators</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Successful detection of test activities</div>
+            </div>
+        </div>
+
+        <!-- Day 9 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week2-day9.html">Day 9 — Purple Team Simulation: Attack and Detect</a></h2>
+            <p class="goal-text">
+                Goal: Run realistic persistence and privilege escalation attempts (red team) against the lab.local environment while actively monitoring and detecting them (blue team) in real time.
+            </p>
+            <h3 class="step-heading">Step 1 — Prepare Monitoring Tools</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Ensure Sysmon, PowerShell logging, and Windows Event Forwarding from Day 8 are operational.</li>
+                <li>Have Event Viewer open on the Domain Controller and the target machine.</li>
+                <li>Optionally, run a SIEM or log aggregation tool (e.g., Splunk, ELK, Wazuh) if available in the lab.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Choose Red Team Scenarios</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Pick at least <code class="bg-gray-100 p-1 rounded">two persistence methods</code> from Day 7:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Scheduled task creation</li>
+                        <li>WMI event subscription</li>
+                        <li>Registry run key modification</li>
+                    </ul>
+                </li>
+                <li>Pick at least <code class="bg-gray-100 p-1 rounded">one privilege escalation attempt</code> from Day 6:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Kerberoasting</li>
+                        <li>Pass-the-Hash</li>
+                        <li>LSASS credential dumping</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Execute the Red Team Actions</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Perform the selected persistence methods on the Windows 10 target or another lab host.</li>
+                <li>Carry out the privilege escalation attempt from a standard domain user account.</li>
+                <li>Document the exact commands, accounts used, and timestamps.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Blue Team Monitoring and Detection</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>On the Domain Controller, watch for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Scheduled Task Creation → Event ID 4698</li>
+                        <li>Registry Modification → Sysmon Event ID 13</li>
+                        <li>WMI Event Subscription → Event ID 5861</li>
+                        <li>Kerberoasting Service Ticket Requests → Event ID 4769</li>
+                        <li>Pass-the-Hash or unusual logons → Event ID 4624 with suspicious logon types</li>
+                        <li>LSASS Access → Sysmon Event ID 10</li>
+                    </ul>
+                </li>
+                <li>Correlate these events with the timestamps from Step 3.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Analyze and Improve Detection</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Review which events triggered and which did not.</li>
+                <li>Adjust Sysmon config, PowerShell logging, or WEF subscription to close any gaps.</li>
+                <li>Add specific detection queries to your SIEM if used.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Document Findings</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Create a table with: Red team action, Expected detection event, Actual detection result, Recommended improvements</li>
+            </ul>
+            <h3 class="step-heading">End of Day 9 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>At least two persistence and one privilege escalation action executed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Relevant detection events captured and verified</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Gaps in detection identified and documented with remediation steps</div>
+            </div>
+        </div>
+
+        <!-- Day 10 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week2-day10.html">Day 10 — Post-Exploitation Cleanup and Lab Reset</a></h2>
+            <p class="goal-text">
+                Goal: Remove persistence mechanisms, clear logs, and restore the lab.local environment to a clean state while preserving the ability to re-run attack and detection exercises.
+            </p>
+            <h3 class="step-heading">Step 1 — Identify and Remove Persistence Methods</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Review Day 7 notes and identify all persistence techniques deployed.</li>
+                <li>Remove each one:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Scheduled Tasks:<br><code class="bg-gray-100 p-1 rounded">schtasks /delete /tn "Updater" /f</code></li>
+                        <li>WMI Event Subscriptions:
+                            <pre class="bg-gray-100 p-2 rounded-md overflow-x-auto text-sm">
+<code class="text-gray-800">Get-WmiObject -Namespace root\subscription -Class __EventFilter | Remove-WmiObject
+Get-WmiObject -Namespace root\subscription -Class CommandLineEventConsumer | Remove-WmiObject
+Get-WmiObject -Namespace root\subscription -Class __FilterToConsumerBinding | Remove-WmiObject</code>
+                            </pre>
+                        </li>
+                        <li>Registry Run Keys:<br><code class="bg-gray-100 p-1 rounded">reg delete HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v Updater /f</code></li>
+                        <li>Group Policy Logon Scripts: Remove the script from:<br><code class="bg-gray-100 p-1 rounded">\<DC>\SYSVOL\<domain>\scripts</code></li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Remove Malicious Accounts or Groups</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Check for unauthorized accounts:<br><code class="bg-gray-100 p-1 rounded">Get-ADUser -Filter * | Where-Object { $_.Description -like "*backdoor*" }</code></li>
+                <li>Remove if found:<br><code class="bg-gray-100 p-1 rounded">Remove-ADUser &lt;username&gt;</code></li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Clear or Archive Logs</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Decide whether to archive logs for training or clear them for a fresh run.</li>
+                <li>Clear logs (lab use only):
+                    <ul class="list-disc list-inside ml-4">
+                        <li><code class="bg-gray-100 p-1 rounded">wevtutil cl Security</code></li>
+                        <li><code class="bg-gray-100 p-1 rounded">wevtutil cl System</code></li>
+                        <li><code class="bg-gray-100 p-1 rounded">wevtutil cl "Microsoft-Windows-Sysmon/Operational"</code></li>
+                    </ul>
+                </li>
+                <li>Or export them for analysis before clearing:<br><code class="bg-gray-100 p-1 rounded">wevtutil epl Security C:\Logs\Security.evtx</code></li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Reset Compromised Passwords</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Change passwords for: Domain Admin accounts, Any accounts used in attacks</li>
+                <li><code class="bg-gray-100 p-1 rounded">Set-ADAccountPassword -Identity &lt;username&gt; -Reset -NewPassword (ConvertTo-SecureString -AsPlainText "&lt;NewPass&gt;" -Force)</code></li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Validate the Reset</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Reboot lab systems.</li>
+                <li>Confirm no persistence methods are triggered.</li>
+                <li>Test domain logins with updated credentials.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Snapshot or Backup the Clean State</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>In VirtualBox or VMware, take a snapshot labeled <code class="bg-gray-100 p-1 rounded">Post-Day10 Clean State</code>.</li>
+                <li>This lets you quickly revert for future attack/detection cycles.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 10 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>All persistence methods removed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>No unauthorized accounts remain</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Logs either cleared or archived</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Passwords reset for all compromised accounts</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Clean lab snapshot created</div>
+            </div>
+        </div>
+
+        <!-- Day 11 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week2-day11.html">Day 11 — Stealth Operations: Evading Detection While Attacking</a></h2>
+            <p class="goal-text">
+                Goal: Conduct enumeration, privilege escalation, and persistence activities in lab.local while attempting to avoid triggering alerts from the monitoring systems built in Days 8–9.
+            </p>
+            <h3 class="step-heading">Step 1 — Understand Detection Triggers</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Review detection rules from Days 8–9.</li>
+                <li>Identify high-noise commands and tools (e.g., Mimikatz, SharpHound) that are likely to trigger logs or alerts.</li>
+                <li>Plan stealthier alternatives.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Stealthy Enumeration</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Use <code class="bg-gray-100 p-1 rounded">built-in Windows commands</code> instead of known offensive tools:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>List domain users:<br><code class="bg-gray-100 p-1 rounded">net user /domain</code></li>
+                        <li>List computers:<br><code class="bg-gray-100 p-1 rounded">net view /domain</code></li>
+                        <li>Query group membership:<br><code class="bg-gray-100 p-1 rounded">net group "Domain Admins" /domain</code></li>
+                    </ul>
+                </li>
+                <li>Leverage <code class="bg-gray-100 p-1 rounded">LDAP queries</code> from PowerShell:<br><code class="bg-gray-100 p-1 rounded">([adsisearcher]"(objectCategory=User)").FindAll()</code></li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Low-Noise Privilege Escalation</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Avoid dropping known binaries to disk — run tools in-memory: Use PowerShell's IEX (New-Object Net.WebClient).DownloadString() for script delivery.</li>
+                <li>Prefer <code class="bg-gray-100 p-1 rounded">living-off-the-land binaries (LOLBins)</code> such as: <code class="bg-gray-100 p-1 rounded">runas</code>, <code class="bg-gray-100 p-1 rounded">wmic</code>, <code class="bg-gray-100 p-1 rounded">certutil</code> for file transfers (lab use only)</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Covert Persistence Techniques</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Instead of obvious run keys or scheduled tasks, use:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Modifying existing scheduled tasks to execute payloads.</li>
+                        <li>Adding startup scripts to legitimate GPOs with minimal change.</li>
+                        <li>Using less common registry keys (e.g., HKCU\Environment) for execution.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Obfuscation</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Use PowerShell obfuscation tools (in lab only) such as Invoke-Obfuscation.</li>
+                <li>Encode payloads with Base64 and execute with -EncodedCommand.</li>
+                <li>Change file names and function names to appear benign.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Test Detection Evasion</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Perform one enumeration task, one escalation, and one persistence method using stealth techniques.</li>
+                <li>Monitor Sysmon, Event Viewer, and WEF for triggered events.</li>
+                <li>Record which actions bypassed detection and which were caught.</li>
+            </ul>
+            <h3 class="step-heading">Step 7 — Improve Stealth</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Modify techniques that were detected.</li>
+                <li>Introduce delays between commands to avoid burst detection patterns.</li>
+                <li>Blend activity with legitimate system and user processes.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 11 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>At least one enumeration, escalation, and persistence method executed without triggering alerts</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documented comparison of stealth vs. non-stealth techniques</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Updated list of effective low-noise tactics for future lab exercises</div>
+            </div>
+        </div>
+
+        <!-- Day 12 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week2-day12.html">Day 12 — Stealth Detection Tuning</a></h2>
+            <p class="goal-text">
+                Goal: Enhance your detection capabilities to identify stealthy enumeration, privilege escalation, and persistence techniques that bypassed monitoring during Day 11.
+            </p>
+            <h3 class="step-heading">Step 1 — Review Stealth Activity Logs</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Examine Sysmon, Event Viewer, and WEF logs from Day 11.</li>
+                <li>Identify stealth actions that went undetected.</li>
+                <li>Note which event IDs or behaviors were missing from your detection coverage.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Expand Sysmon Configuration</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Add new rules to capture:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Rarely used binaries (LOLBins) such as certutil, wmic, bitsadmin.</li>
+                        <li>PowerShell -EncodedCommand usage.</li>
+                        <li>Execution from uncommon directories (e.g., C:\Users\Public).</li>
+                    </ul>
+                </li>
+                <li>Example rule snippet:<br><code class="bg-gray-100 p-1 rounded">&lt;CommandLine condition="contains"&gt;-EncodedCommand&lt;/CommandLine&gt;</code></li>
+                <li>Reload configuration:<br><code class="bg-gray-100 p-1 rounded">sysmon -c sysmonconfig_updated.xml</code></li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Enhance PowerShell Logging</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Enable <code class="bg-gray-100 p-1 rounded">Module Logging</code> and <code class="bg-gray-100 p-1 rounded">Script Block Logging</code> for all PowerShell sessions.</li>
+                <li>Add logging for: Base64-encoded command execution, Obfuscation patterns</li>
+                <li>Regularly export logs for review.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Correlate Low-Noise Indicators</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>In SIEM or manual log review, create correlation rules:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>certutil + outbound network connections</li>
+                        <li>PowerShell execution + suspicious parent process</li>
+                        <li>WMI process creation + privilege escalation events</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Monitor Uncommon Persistence Locations</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Expand monitoring to include:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>HKCU\Environment</li>
+                        <li>Modified legitimate scheduled tasks</li>
+                        <li>Non-standard GPO modifications</li>
+                    </ul>
+                </li>
+                <li>Trigger alerts for changes in these locations.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Re-Test Stealth Techniques</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Re-run one stealth enumeration, escalation, and persistence method from Day 11.</li>
+                <li>Monitor if new detection rules trigger.</li>
+                <li>Adjust configurations if needed.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 12 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Detection rules updated to cover previously missed stealth activities</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Successful alert generation for at least one previously undetected action</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documentation of updated Sysmon, PowerShell, and correlation rules</div>
+            </div>
+        </div>
+
+        <!-- Day 13 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week2-day13.html">Day 13 — Advanced Red vs. Blue Simulation</a></h2>
+            <p class="goal-text">
+                Goal: Conduct a full-scale stealth intrusion simulation against lab.local, performing end-to-end attack sequences as the red team while the blue team actively monitors and responds, simulating a realistic adversary detection and hunt scenario.
+            </p>
+            <h3 class="step-heading">Step 1 — Red Team Attack Planning</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Define your attack chain:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Initial foothold (low-privileged domain user)</li>
+                        <li>Enumeration (low-noise methods from Day 11)</li>
+                        <li>Privilege escalation (covert techniques)</li>
+                        <li>Lateral movement to a high-value target (e.g., DC)</li>
+                        <li>Persistence establishment (stealthy method)</li>
+                        <li>Data staging/exfiltration simulation</li>
+                    </ul>
+                </li>
+                <li>Document expected detection points from your Day 12 tuning.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Blue Team Monitoring Setup</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Confirm:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Sysmon with updated Day 12 configuration is running on all systems</li>
+                        <li>PowerShell logging is active</li>
+                        <li>WEF is forwarding events to the DC or SIEM</li>
+                    </ul>
+                </li>
+                <li>Prepare custom queries/dashboards to track:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>LOLBin usage</li>
+                        <li>Encoded PowerShell commands</li>
+                        <li>Kerberos ticket anomalies</li>
+                        <li>WMI and scheduled task events</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Execute the Red Team Operation</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Gain access to a standard domain user account.</li>
+                <li>Perform low-noise enumeration to identify potential escalation paths.</li>
+                <li>Use a stealth escalation method (e.g., Kerberoasting with in-memory execution).</li>
+                <li>Laterally move to a privileged machine using covert channels (e.g., WinRM with encoded commands).</li>
+                <li>Deploy persistence via a modified legitimate scheduled task.</li>
+                <li>Simulate sensitive data collection (e.g., dummy files) and exfiltrate via a covert method.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Blue Team Detection and Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Monitor live logs for indicators of the red team's activity.</li>
+                <li>Investigate suspicious event IDs (e.g., 4698, 4769, 4624 with unusual logon types, Sysmon ID 1, 13, 10).</li>
+                <li>Attempt to identify the attack chain in real-time.</li>
+                <li>Respond by: Isolating compromised machines, Disabling compromised accounts, Terminating persistence mechanisms</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Joint Debrief</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team shares full attack chain, including: Commands used, Tools executed, Timestamps</li>
+                <li>Blue team shares detection points, missed events, and response times.</li>
+                <li>Compare results to planned detection coverage from Step 1.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Lessons Learned and Next Steps</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Update detection rules for missed stealth activity.</li>
+                <li>Improve red team stealth tactics for harder-to-detect actions.</li>
+                <li>Plan next simulation with higher complexity (e.g., multiple compromised accounts, staged attacks).</li>
+            </ul>
+            <h3 class="step-heading">End of Day 13 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Complete attack chain executed by red team</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team detected and responded to multiple steps</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Gaps in detection documented and action items created for improvement</div>
+            </div>
+        </div>
+
+        <!-- Day 14 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week2-day14.html">Day 14 — Adversary Emulation: Real-World Threat Replication</a></h2>
+            <p class="goal-text">
+                Goal: Select a real-world APT group or ransomware actor known for targeting Windows environments, study their tactics, techniques, and procedures (TTPs) from the MITRE ATT&CK framework, and replicate their behaviors in your lab.local domain to test offensive execution and defensive detection.
+            </p>
+            <h3 class="step-heading">Step 1 — Choose an Adversary Profile</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Examples of groups to emulate:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>APT29 (Cozy Bear) — stealthy espionage group targeting governments and enterprises.</li>
+                        <li>FIN7 — financially motivated group with advanced phishing and persistence.</li>
+                        <li>Conti Ransomware Group — high-impact ransomware operators.</li>
+                    </ul>
+                </li>
+                <li>Select one adversary whose TTPs align with the skills and tools available in your lab.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Research TTPs</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Use these resources: MITRE ATT&CK, Threat intelligence reports from vendors like CrowdStrike, Mandiant, and CISA.</li>
+                <li>Map the chosen adversary's known TTPs to ATT&CK IDs.</li>
+                <li>Categorize into stages: Initial Access, Execution, Persistence, Privilege Escalation, Defense Evasion, Credential Access, Discovery, Lateral Movement, Collection, Exfiltration</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Adapt TTPs for the Lab</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Replace destructive payloads with benign scripts to avoid damaging your environment.</li>
+                <li>Example adaptations: Instead of ransomware encryption, simulate by zipping files. Instead of exfiltrating real data, copy harmless test data.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Execute the Emulation Plan (Red Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Follow the chosen group's TTP chain step-by-step in your lab.</li>
+                <li>Use the same tools or equivalent open-source alternatives.</li>
+                <li>Record: Command lines, Execution times, Expected detection points</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Monitor and Detect (Blue Team)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Use Sysmon, Event Viewer, and WEF to monitor for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Indicators of compromise (IOCs) matching the adversary profile.</li>
+                        <li>Specific event IDs from your Day 12 tuning.</li>
+                        <li>New behaviors that were not previously seen in your lab.</li>
+                    </ul>
+                </li>
+                <li>Compare detected vs. missed activity.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Debrief and Improve</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Document the full emulation: TTPs tested, Detection successes and failures, Recommendations for improving monitoring and response</li>
+                <li>Update your detection rules to address missed techniques.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 14 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>One real-world adversary profile selected and mapped to ATT&CK</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Safe lab-friendly replication of key TTPs executed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team detection analysis completed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Detection rules and response processes updated</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1.html" class="nav-button">← Week 1</a>
+            <a href="cyber-week3.html" class="nav-button">Week 3 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

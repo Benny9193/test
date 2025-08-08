@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 10 - Post-Exploitation Cleanup and Lab Reset | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 10: Post-Exploitation Cleanup and Lab Reset
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 2 - Detection & Purple Team Operations
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week2-day9.html" class="nav-button">← Day 9</a>
+            <a href="cyber-week2-day11.html" class="nav-button">Day 11 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 10 — Post-Exploitation Cleanup and Lab Reset</h2>
+            <p class="goal-text">
+                Goal: Remove persistence mechanisms, clear logs, and restore the lab.local environment to a clean state while preserving the ability to re-run attack and detection exercises.
+            </p>
+            <h3 class="step-heading">Step 1 — Identify and Remove Persistence Methods</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Review Day 7 notes and identify all persistence techniques deployed.</li>
+                <li>Remove each one:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Scheduled Tasks:<br><code class="bg-gray-100 p-1 rounded">schtasks /delete /tn "Updater" /f</code></li>
+                        <li>WMI Event Subscriptions:
+                            <pre class="bg-gray-100 p-2 rounded-md overflow-x-auto text-sm">
+<code class="text-gray-800">Get-WmiObject -Namespace root\subscription -Class __EventFilter | Remove-WmiObject
+Get-WmiObject -Namespace root\subscription -Class CommandLineEventConsumer | Remove-WmiObject
+Get-WmiObject -Namespace root\subscription -Class __FilterToConsumerBinding | Remove-WmiObject</code>
+                            </pre>
+                        </li>
+                        <li>Registry Run Keys:<br><code class="bg-gray-100 p-1 rounded">reg delete HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v Updater /f</code></li>
+                        <li>Group Policy Logon Scripts: Remove the script from:<br><code class="bg-gray-100 p-1 rounded">\\<DC>\SYSVOL\<domain>\scripts</code></li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Remove Malicious Accounts or Groups</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Check for unauthorized accounts:<br><code class="bg-gray-100 p-1 rounded">Get-ADUser -Filter * | Where-Object { $_.Description -like "*backdoor*" }</code></li>
+                <li>Remove if found:<br><code class="bg-gray-100 p-1 rounded">Remove-ADUser <username></code></li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Clear or Archive Logs</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Decide whether to archive logs for training or clear them for a fresh run.</li>
+                <li>Clear logs (lab use only):
+                    <ul class="list-disc list-inside ml-4">
+                        <li><code class="bg-gray-100 p-1 rounded">wevtutil cl Security</code></li>
+                        <li><code class="bg-gray-100 p-1 rounded">wevtutil cl System</code></li>
+                        <li><code class="bg-gray-100 p-1 rounded">wevtutil cl "Microsoft-Windows-Sysmon/Operational"</code></li>
+                    </ul>
+                </li>
+                <li>Or export them for analysis before clearing:<br><code class="bg-gray-100 p-1 rounded">wevtutil epl Security C:\Logs\Security.evtx</code></li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Reset Compromised Passwords</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Change passwords for: Domain Admin accounts, Any accounts used in attacks</li>
+                <li><code class="bg-gray-100 p-1 rounded">Set-ADAccountPassword -Identity <username> -Reset -NewPassword (ConvertTo-SecureString -AsPlainText "<NewPass>" -Force)</code></li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Validate the Reset</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Reboot lab systems.</li>
+                <li>Confirm no persistence methods are triggered.</li>
+                <li>Test domain logins with updated credentials.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Snapshot or Backup the Clean State</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>In VirtualBox or VMware, take a snapshot labeled <code class="bg-gray-100 p-1 rounded">Post-Day10 Clean State</code>.</li>
+                <li>This lets you quickly revert for future attack/detection cycles.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 10 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>All persistence methods removed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>No unauthorized accounts remain</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Logs either cleared or archived</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Passwords reset for all compromised accounts</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Clean lab snapshot created</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week2-day9.html" class="nav-button">← Day 9</a>
+            <a href="cyber-week2-day11.html" class="nav-button">Day 11 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

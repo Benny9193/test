@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 8 - Detection & Monitoring for Persistence and Privilege Escalation | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 8: Detection & Monitoring for Persistence and Privilege Escalation
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 2 - Detection & Purple Team Operations
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week2.html" class="nav-button">← Back to Week 2</a>
+            <a href="cyber-week2-day9.html" class="nav-button">Day 9 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 8 — Detection & Monitoring for Persistence and Privilege Escalation</h2>
+            <p class="goal-text">
+                Goal: Implement logging and monitoring in the lab.local domain to detect the persistence methods and privilege escalation techniques practiced in previous days.
+            </p>
+            <h3 class="step-heading">Step 1 — Install and Configure Sysmon</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Download Sysmon from Microsoft Sysinternals: <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon" target="_blank">https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon</a></li>
+                <li>Install with a recommended config (SwiftOnSecurity's config is popular):<br><code class="bg-gray-100 p-1 rounded">sysmon -accepteula -i sysmonconfig.xml</code></li>
+                <li>Ensure Sysmon is set to start automatically after reboot.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Enable PowerShell Logging</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>On each machine, enable: Module Logging, Script Block Logging, Transcription</li>
+                <li>Group Policy path:<br><code class="bg-gray-100 p-1 rounded">Computer Configuration → Administrative Templates → Windows PowerShell</code></li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Configure Windows Event Forwarding (WEF)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Set the Domain Controller as the event collector.</li>
+                <li>Configure source machines (Windows 10 target, other domain systems) to forward relevant event logs: Security, Microsoft-Windows-Sysmon/Operational, Windows PowerShell</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Detection for Persistence Methods</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Monitor for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Scheduled Task Creation: Event ID 4698</li>
+                        <li>Registry Run Key Changes: Sysmon Event ID 13</li>
+                        <li>WMI Event Subscription: Event ID 5861</li>
+                        <li>Group Policy Script Changes: Event ID 5136 (Directory Service Changes)</li>
+                    </ul>
+                </li>
+                <li>Set up alerts in your SIEM or Event Viewer filters.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Detection for Privilege Escalation</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Monitor for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Kerberoasting Activity: Event ID 4769 (Service Ticket Requests)</li>
+                        <li>Pass-the-Hash/Ticket: Event IDs 4624 (logon) with unusual logon types (e.g., Type 3, 9, 10)</li>
+                        <li>LSASS Access: Sysmon Event ID 10 (Process Access to LSASS)</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Test Your Monitoring</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Re-run one or two persistence methods from Day 7.</li>
+                <li>Trigger a simple privilege escalation attempt.</li>
+                <li>Confirm that logs appear in Sysmon and Event Viewer.</li>
+                <li>Verify events are forwarded to the DC collector if WEF is enabled.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 8 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Sysmon installed and configured on all lab systems</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>PowerShell logging enabled</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>WEF configured and operational</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Alerts or filters in place for persistence and privilege escalation indicators</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Successful detection of test activities</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week2.html" class="nav-button">← Back to Week 2</a>
+            <a href="cyber-week2-day9.html" class="nav-button">Day 9 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

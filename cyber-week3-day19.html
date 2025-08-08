@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 19 - Offensive Persistence Re-Entry | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 19: Offensive Persistence Re-Entry
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 3 - Advanced Simulations & Threat Hunting
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week3-day18.html" class="nav-button">← Day 18</a>
+            <a href="cyber-week3-day20.html" class="nav-button">Day 20 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 19 — Offensive Persistence Re-Entry</h2>
+            <p class="goal-text">
+                Goal: Simulate a red team attempt to re-establish persistence in lab.local immediately after the blue team's Day 18 persistence hunt, testing whether updated defenses and detection rules can identify and block new, more creative footholds.
+            </p>
+            <h3 class="step-heading">Step 1 — Review Blue Team Updates</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Analyze detection rules and removal processes implemented on Day 18.</li>
+                <li>Identify blind spots or areas where persistence hunting coverage is weak.</li>
+                <li>Plan new persistence techniques that exploit these gaps.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Select Advanced Persistence Methods</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Use less common techniques that are harder to detect:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Modifying legitimate scheduled tasks instead of creating new ones.</li>
+                        <li>Leveraging obscure registry keys (e.g., HKCU\Environment variables).</li>
+                        <li>Creating WMI event subscriptions with rare triggers.</li>
+                        <li>Hiding payloads within legitimate binaries (living-off-the-land binaries).</li>
+                        <li>Establishing GPO changes with minimal modifications to existing scripts.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Deploy Persistence Stealthily</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Avoid high-noise actions that would trigger alerts from Day 18 tuning.</li>
+                <li>Spread deployments across multiple machines to increase survivability.</li>
+                <li>Randomize timing of persistence activation to avoid immediate detection.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Monitor Blue Team Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>As the red team, observe whether:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Persistence is detected through Sysmon, WEF, or PowerShell logging.</li>
+                        <li>Alerts are generated in near real time.</li>
+                        <li>Blue team isolates compromised machines or accounts promptly.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Blue Team Actions</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Hunt for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Modifications to existing scheduled tasks.</li>
+                        <li>Registry changes outside previously monitored keys.</li>
+                        <li>WMI filters/consumers with uncommon event queries.</li>
+                        <li>Slight alterations to legitimate logon scripts.</li>
+                    </ul>
+                </li>
+                <li>Validate detection of persistence activation events.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Debrief and Adjust</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team: Document persistence methods used, stealth measures applied, and which remained undetected.</li>
+                <li>Blue team: Identify which new techniques bypassed detection and update hunting/detection coverage.</li>
+                <li>Jointly define countermeasures to block future re-entry attempts.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 19 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Red team deployed at least two creative persistence methods</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team detected and removed as many as possible</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Detection rules expanded to cover newly tested techniques</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week3-day18.html" class="nav-button">← Day 18</a>
+            <a href="cyber-week3-day20.html" class="nav-button">Day 20 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

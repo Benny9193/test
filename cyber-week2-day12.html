@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 12 - Stealth Detection Tuning | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 12: Stealth Detection Tuning
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 2 - Detection & Purple Team Operations
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week2-day11.html" class="nav-button">← Day 11</a>
+            <a href="cyber-week2-day13.html" class="nav-button">Day 13 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 12 — Stealth Detection Tuning</h2>
+            <p class="goal-text">
+                Goal: Enhance your detection capabilities to identify stealthy enumeration, privilege escalation, and persistence techniques that bypassed monitoring during Day 11.
+            </p>
+            <h3 class="step-heading">Step 1 — Review Stealth Activity Logs</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Examine Sysmon, Event Viewer, and WEF logs from Day 11.</li>
+                <li>Identify stealth actions that went undetected.</li>
+                <li>Note which event IDs or behaviors were missing from your detection coverage.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Expand Sysmon Configuration</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Add new rules to capture:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Rarely used binaries (LOLBins) such as certutil, wmic, bitsadmin.</li>
+                        <li>PowerShell -EncodedCommand usage.</li>
+                        <li>Execution from uncommon directories (e.g., C:\Users\Public).</li>
+                    </ul>
+                </li>
+                <li>Example rule snippet:<br><code class="bg-gray-100 p-1 rounded"><CommandLine condition="contains">-EncodedCommand</CommandLine></code></li>
+                <li>Reload configuration:<br><code class="bg-gray-100 p-1 rounded">sysmon -c sysmonconfig_updated.xml</code></li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Enhance PowerShell Logging</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Enable <code class="bg-gray-100 p-1 rounded">Module Logging</code> and <code class="bg-gray-100 p-1 rounded">Script Block Logging</code> for all PowerShell sessions.</li>
+                <li>Add logging for: Base64-encoded command execution, Obfuscation patterns</li>
+                <li>Regularly export logs for review.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Correlate Low-Noise Indicators</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>In SIEM or manual log review, create correlation rules:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>certutil + outbound network connections</li>
+                        <li>PowerShell execution + suspicious parent process</li>
+                        <li>WMI process creation + privilege escalation events</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Monitor Uncommon Persistence Locations</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Expand monitoring to include:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>HKCU\Environment</li>
+                        <li>Modified legitimate scheduled tasks</li>
+                        <li>Non-standard GPO modifications</li>
+                    </ul>
+                </li>
+                <li>Trigger alerts for changes in these locations.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Re-Test Stealth Techniques</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Re-run one stealth enumeration, escalation, and persistence method from Day 11.</li>
+                <li>Monitor if new detection rules trigger.</li>
+                <li>Adjust configurations if needed.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 12 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Detection rules updated to cover previously missed stealth activities</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Successful alert generation for at least one previously undetected action</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documentation of updated Sysmon, PowerShell, and correlation rules</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week2-day11.html" class="nav-button">← Day 11</a>
+            <a href="cyber-week2-day13.html" class="nav-button">Day 13 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 17 - Proactive Threat Hunting | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 17: Proactive Threat Hunting
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 3 - Advanced Simulations & Threat Hunting
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week3-day16.html" class="nav-button">← Day 16</a>
+            <a href="cyber-week3-day18.html" class="nav-button">Day 18 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 17 — Proactive Threat Hunting</h2>
+            <p class="goal-text">
+                Goal: Conduct a proactive blue team hunt for indicators of compromise (IOCs) and malicious activity within lab.local without prior alerts from the red team, simulating a real-world scenario where defenders must identify stealth attacks on their own.
+            </p>
+            <h3 class="step-heading">Step 1 — Establish a Threat Hunting Hypothesis</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Define the scope and focus of the hunt:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Example: "An adversary has compromised a domain user account and is moving laterally."</li>
+                    </ul>
+                </li>
+                <li>Determine the types of activity you will look for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Unusual logon patterns</li>
+                        <li>Rare process executions</li>
+                        <li>Suspicious PowerShell usage</li>
+                        <li>Persistence indicators</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Collect and Centralize Data</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Pull logs from Sysmon, Event Viewer, and WEF.</li>
+                <li>Ensure visibility into: Security event logs, PowerShell operational logs, Sysmon process and network activity</li>
+                <li>If using a SIEM, load relevant log sources and create temporary hunting dashboards.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Search for Anomalies</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Query for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Event ID 4624 with rare logon types or odd workstations</li>
+                        <li>Sysmon Event ID 1 for uncommon process executions</li>
+                        <li>Sysmon Event ID 3 for unusual network connections</li>
+                        <li>PowerShell logs with Base64-encoded commands</li>
+                        <li>WMI events (Sysmon Event ID 21) tied to non-admin accounts</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Investigate Leads</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>For each suspicious event:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Identify the originating host and account</li>
+                        <li>Trace process ancestry</li>
+                        <li>Check for related persistence mechanisms (e.g., scheduled tasks, registry keys)</li>
+                    </ul>
+                </li>
+                <li>Correlate with historical activity to rule out false positives.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Document Findings</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Maintain a hunt log including: Event IDs, Hostnames and accounts, Timeline of suspicious activity, Determination: benign or malicious</li>
+                <li>Prioritize any confirmed malicious activity for containment.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Contain and Remediate</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>For confirmed malicious findings: Disable compromised accounts, Remove persistence mechanisms, Isolate affected hosts</li>
+                <li>Update detection rules to catch similar activity in the future</li>
+            </ul>
+            <h3 class="step-heading">End of Day 17 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Threat hunting hypothesis tested and investigated</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>At least one anomaly detected and analyzed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Updated detection coverage based on hunt results</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documented process for repeating proactive hunts</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week3-day16.html" class="nav-button">← Day 16</a>
+            <a href="cyber-week3-day18.html" class="nav-button">Day 18 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

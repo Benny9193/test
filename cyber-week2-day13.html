@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 13 - Advanced Red vs. Blue Simulation | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 13: Advanced Red vs. Blue Simulation
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 2 - Detection & Purple Team Operations
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week2-day12.html" class="nav-button">← Day 12</a>
+            <a href="cyber-week2-day14.html" class="nav-button">Day 14 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 13 — Advanced Red vs. Blue Simulation</h2>
+            <p class="goal-text">
+                Goal: Conduct a full-scale stealth intrusion simulation against lab.local, performing end-to-end attack sequences as the red team while the blue team actively monitors and responds, simulating a realistic adversary detection and hunt scenario.
+            </p>
+            <h3 class="step-heading">Step 1 — Red Team Attack Planning</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Define your attack chain:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Initial foothold (low-privileged domain user)</li>
+                        <li>Enumeration (low-noise methods from Day 11)</li>
+                        <li>Privilege escalation (covert techniques)</li>
+                        <li>Lateral movement to a high-value target (e.g., DC)</li>
+                        <li>Persistence establishment (stealthy method)</li>
+                        <li>Data staging/exfiltration simulation</li>
+                    </ul>
+                </li>
+                <li>Document expected detection points from your Day 12 tuning.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Blue Team Monitoring Setup</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Confirm:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Sysmon with updated Day 12 configuration is running on all systems</li>
+                        <li>PowerShell logging is active</li>
+                        <li>WEF is forwarding events to the DC or SIEM</li>
+                    </ul>
+                </li>
+                <li>Prepare custom queries/dashboards to track:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>LOLBin usage</li>
+                        <li>Encoded PowerShell commands</li>
+                        <li>Kerberos ticket anomalies</li>
+                        <li>WMI and scheduled task events</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Execute the Red Team Operation</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Gain access to a standard domain user account.</li>
+                <li>Perform low-noise enumeration to identify potential escalation paths.</li>
+                <li>Use a stealth escalation method (e.g., Kerberoasting with in-memory execution).</li>
+                <li>Laterally move to a privileged machine using covert channels (e.g., WinRM with encoded commands).</li>
+                <li>Deploy persistence via a modified legitimate scheduled task.</li>
+                <li>Simulate sensitive data collection (e.g., dummy files) and exfiltrate via a covert method.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Blue Team Detection and Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Monitor live logs for indicators of the red team's activity.</li>
+                <li>Investigate suspicious event IDs (e.g., 4698, 4769, 4624 with unusual logon types, Sysmon ID 1, 13, 10).</li>
+                <li>Attempt to identify the attack chain in real-time.</li>
+                <li>Respond by: Isolating compromised machines, Disabling compromised accounts, Terminating persistence mechanisms</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Joint Debrief</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team shares full attack chain, including: Commands used, Tools executed, Timestamps</li>
+                <li>Blue team shares detection points, missed events, and response times.</li>
+                <li>Compare results to planned detection coverage from Step 1.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Lessons Learned and Next Steps</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Update detection rules for missed stealth activity.</li>
+                <li>Improve red team stealth tactics for harder-to-detect actions.</li>
+                <li>Plan next simulation with higher complexity (e.g., multiple compromised accounts, staged attacks).</li>
+            </ul>
+            <h3 class="step-heading">End of Day 13 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Complete attack chain executed by red team</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team detected and responded to multiple steps</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Gaps in detection documented and action items created for improvement</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week2-day12.html" class="nav-button">← Day 12</a>
+            <a href="cyber-week2-day14.html" class="nav-button">Day 14 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

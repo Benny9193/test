@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3 - Advanced Simulations & Threat Hunting | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Week 3: Advanced Simulations & Threat Hunting
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Days 15-21 focus on multi-adversary challenges, extended simulations, proactive threat hunting, persistence operations, full-scope campaigns, and comprehensive after-action reviews to solidify red and blue team skills.
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week2.html" class="nav-button">← Week 2</a>
+            <a href="cyber-week4.html" class="nav-button">Week 4+ →</a>
+        </div>
+
+        <!-- Day 15 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week3-day15.html">Day 15 — Multi-Adversary Challenge</a></h2>
+            <p class="goal-text">
+                Goal: Simulate two or more different adversary profiles in quick succession or in a blended attack chain to stress-test both red team execution and blue team detection/response under chaotic, multi-attack conditions.
+            </p>
+            <h3 class="step-heading">Step 1 — Select Adversary Profiles</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Choose at least two real-world groups from MITRE ATT&CK:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Example 1: APT29 (Cozy Bear) — stealthy espionage operations.</li>
+                        <li>Example 2: Conti Ransomware Group — aggressive, high-speed attacks.</li>
+                    </ul>
+                </li>
+                <li>Ensure chosen groups have distinct TTPs to create variety in attack patterns.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Map and Combine TTPs</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Create an attack plan that includes:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Initial access methods from both actors.</li>
+                        <li>Overlapping techniques (e.g., both using PowerShell but with different goals).</li>
+                        <li>Distinct privilege escalation or persistence methods from each.</li>
+                    </ul>
+                </li>
+                <li>Decide if attacks will be:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Sequential: One adversary completes their chain before the next starts.</li>
+                        <li>Concurrent: Both attack profiles operate at the same time.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Red Team Execution</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Begin with adversary A's initial access and early-stage actions.</li>
+                <li>Introduce adversary B's activity before adversary A completes their chain.</li>
+                <li>Use different tooling, command syntax, and timing to make attribution harder.</li>
+                <li>Record all commands, timestamps, and hostnames affected.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Blue Team Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Monitor for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Increased alert volume due to multiple attack patterns.</li>
+                        <li>Conflicting or overlapping IOCs.</li>
+                        <li>Changes in attacker behavior as both sets of TTPs unfold.</li>
+                    </ul>
+                </li>
+                <li>Respond in real time by prioritizing high-impact detections.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Stress-Test Detection Rules</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Evaluate whether:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Low-noise TTPs from adversary A still bypass detection.</li>
+                        <li>High-noise TTPs from adversary B overwhelm analysts.</li>
+                        <li>Alerts can be correctly attributed to the right simulated adversary.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Debrief and Lessons Learned</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team: Document blended or conflicting tactics and their impact.</li>
+                <li>Blue team: Identify which detections failed due to noise or confusion.</li>
+                <li>Jointly decide on improvements to: Event correlation, Incident prioritization, Playbook flexibility under multi-threat conditions</li>
+            </ul>
+            <h3 class="step-heading">End of Day 15 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Two or more adversary profiles executed in blended or overlapping fashion</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team maintained detection and response without losing situational awareness</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documented improvements for handling complex, multi-actor scenarios</div>
+            </div>
+        </div>
+
+        <!-- Day 16 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week3-day16.html">Day 16 — Endurance Simulation: Extended Operations</a></h2>
+            <p class="goal-text">
+                Goal: Conduct a continuous, 4–6 hour red vs. blue lab simulation with multiple intrusion attempts happening at unpredictable times to test both teams' sustained effectiveness and adaptability over extended operations.
+            </p>
+            <h3 class="step-heading">Step 1 — Define Simulation Timeline</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Schedule the exercise over a 4–6 hour window.</li>
+                <li>Plan 4–6 separate intrusion events, spaced irregularly (e.g., 20 minutes apart, then a 1-hour gap, then two quick attacks).</li>
+                <li>Assign different objectives to each intrusion: Persistence deployment, Privilege escalation, Lateral movement, Data exfiltration simulation, Stealth reconnaissance</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Red Team Preparation</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Develop varied attack plans for each event:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Mix high-noise and stealthy tactics.</li>
+                        <li>Alternate between known and novel TTPs.</li>
+                        <li>Use different user accounts, hosts, and persistence methods.</li>
+                    </ul>
+                </li>
+                <li>Randomize execution order so attacks are unpredictable.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Blue Team Setup</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Verify logging (Sysmon, WEF, PowerShell) and alerting are active.</li>
+                <li>Prepare incident tracking sheets to record: Time of detection, Event ID(s), Response actions taken, Time to contain/eradicate threat</li>
+                <li>Ensure monitoring dashboards or SIEM queries are pre-loaded.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Execution</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team begins attacks at pre-determined but concealed intervals.</li>
+                <li>Blue team actively monitors and responds in real time.</li>
+                <li>Maintain operational tempo without breaks to simulate fatigue factors.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Adaptation Mid-Exercise</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team changes tactics mid-stream if a pattern is detected by blue team.</li>
+                <li>Blue team adjusts monitoring focus based on observed red team activity.</li>
+                <li>Both teams document decision-making under pressure.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Debrief and Analysis</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Review: Total number of intrusion attempts detected vs. missed, Average detection and response times, Impact of fatigue on decision-making and reaction speed.</li>
+                <li>Identify: Most effective red team tactics under extended pressure, Blue team's strongest and weakest detection areas.</li>
+                <li>Update detection rules, response playbooks, and attack strategies accordingly.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 16 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>All planned intrusion events executed across the full time window</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team maintained operational monitoring without lapses</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Detailed performance metrics captured for both teams</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Updated tactics and playbooks reflecting lessons learned from extended operations</div>
+            </div>
+        </div>
+
+        <!-- Day 17 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week3-day17.html">Day 17 — Proactive Threat Hunting</a></h2>
+            <p class="goal-text">
+                Goal: Conduct a proactive blue team hunt for indicators of compromise (IOCs) and malicious activity within lab.local without prior alerts from the red team, simulating a real-world scenario where defenders must identify stealth attacks on their own.
+            </p>
+            <h3 class="step-heading">Step 1 — Establish a Threat Hunting Hypothesis</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Define the scope and focus of the hunt:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Example: "An adversary has compromised a domain user account and is moving laterally."</li>
+                    </ul>
+                </li>
+                <li>Determine the types of activity you will look for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Unusual logon patterns</li>
+                        <li>Rare process executions</li>
+                        <li>Suspicious PowerShell usage</li>
+                        <li>Persistence indicators</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Collect and Centralize Data</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Pull logs from Sysmon, Event Viewer, and WEF.</li>
+                <li>Ensure visibility into: Security event logs, PowerShell operational logs, Sysmon process and network activity</li>
+                <li>If using a SIEM, load relevant log sources and create temporary hunting dashboards.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Search for Anomalies</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Query for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Event ID 4624 with rare logon types or odd workstations</li>
+                        <li>Sysmon Event ID 1 for uncommon process executions</li>
+                        <li>Sysmon Event ID 3 for unusual network connections</li>
+                        <li>PowerShell logs with Base64-encoded commands</li>
+                        <li>WMI events (Sysmon Event ID 21) tied to non-admin accounts</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Investigate Leads</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>For each suspicious event:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Identify the originating host and account</li>
+                        <li>Trace process ancestry</li>
+                        <li>Check for related persistence mechanisms (e.g., scheduled tasks, registry keys)</li>
+                    </ul>
+                </li>
+                <li>Correlate with historical activity to rule out false positives.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Document Findings</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Maintain a hunt log including: Event IDs, Hostnames and accounts, Timeline of suspicious activity, Determination: benign or malicious</li>
+                <li>Prioritize any confirmed malicious activity for containment.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Contain and Remediate</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>For confirmed malicious findings: Disable compromised accounts, Remove persistence mechanisms, Isolate affected hosts</li>
+                <li>Update detection rules to catch similar activity in the future</li>
+            </ul>
+            <h3 class="step-heading">End of Day 17 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Threat hunting hypothesis tested and investigated</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>At least one anomaly detected and analyzed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Updated detection coverage based on hunt results</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documented process for repeating proactive hunts</div>
+            </div>
+        </div>
+
+        <!-- Day 18 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week3-day18.html">Day 18 — Adversary Persistence Hunt</a></h2>
+            <p class="goal-text">
+                Goal: Conduct a focused blue team operation to search for and eradicate stealthy, long-term persistence mechanisms in lab.local that could survive typical incident response, ensuring a clean and secure environment.
+            </p>
+            <h3 class="step-heading">Step 1 — Define Persistence Hunt Scope</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Focus on persistence techniques from MITRE ATT&CK categories such as:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Registry run keys and startup folders</li>
+                        <li>WMI event subscriptions</li>
+                        <li>Modified or rogue scheduled tasks</li>
+                        <li>Malicious Group Policy logon scripts</li>
+                        <li>Kerberos Golden Tickets or Silver Tickets</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Collect and Review Data Sources</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Pull logs from: Sysmon (Event IDs 1, 13, 21), Security Event Logs (Event IDs 4698, 4702, 4769), Directory Services logs for GPO changes (Event ID 5136)</li>
+                <li>If available, query historical logs in your SIEM for persistence-related events.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Hunt for Persistence Indicators</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Search for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Scheduled tasks created or modified by unexpected accounts.</li>
+                        <li>WMI filters and consumers in root\subscription.</li>
+                        <li>Unusual entries in: HKCU\Software\Microsoft\Windows\CurrentVersion\Run, HKLM\Software\Microsoft\Windows\CurrentVersion\Run, HKCU\Environment</li>
+                        <li>Recently modified scripts in SYSVOL for GPOs.</li>
+                        <li>Active Kerberos tickets with unusually long lifetimes.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Investigate Suspicious Findings</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Confirm whether each indicator is malicious or legitimate.</li>
+                <li>For registry keys or scheduled tasks, verify creation dates and associated executables.</li>
+                <li>For Kerberos tickets, check issuance details and compare with normal authentication patterns.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Eradicate Malicious Persistence</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Remove malicious scheduled tasks:<br><code class="bg-gray-100 p-1 rounded">schtasks /delete /tn "&lt;taskname&gt;" /f</code></li>
+                <li>Delete rogue WMI subscriptions:
+                    <pre class="bg-gray-100 p-2 rounded-md overflow-x-auto text-sm">
+<code class="text-gray-800">Get-WmiObject -Namespace root\subscription -Class __EventFilter | Remove-WmiObject
+Get-WmiObject -Namespace root\subscription -Class CommandLineEventConsumer | Remove-WmiObject
+Get-WmiObject -Namespace root\subscription -Class __FilterToConsumerBinding | Remove-WmiObject</code>
+                    </pre>
+                </li>
+                <li>Clean malicious registry entries using <code class="bg-gray-100 p-1 rounded">reg delete</code>.</li>
+                <li>Revert unauthorized GPO changes.</li>
+                <li>Invalidate Golden Tickets by resetting the KRBTGT account password twice.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Validate and Document</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Re-run persistence hunting queries to confirm removal.</li>
+                <li>Log: Persistence methods found, Removal steps taken, Detection rules updated to catch similar future attempts</li>
+            </ul>
+            <h3 class="step-heading">End of Day 18 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>All malicious persistence methods identified and removed</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Detection rules updated for future coverage</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documentation completed with remediation steps and prevention recommendations</div>
+            </div>
+        </div>
+
+        <!-- Day 19 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week3-day19.html">Day 19 — Offensive Persistence Re-Entry</a></h2>
+            <p class="goal-text">
+                Goal: Simulate a red team attempt to re-establish persistence in lab.local immediately after the blue team's Day 18 persistence hunt, testing whether updated defenses and detection rules can identify and block new, more creative footholds.
+            </p>
+            <h3 class="step-heading">Step 1 — Review Blue Team Updates</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Analyze detection rules and removal processes implemented on Day 18.</li>
+                <li>Identify blind spots or areas where persistence hunting coverage is weak.</li>
+                <li>Plan new persistence techniques that exploit these gaps.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Select Advanced Persistence Methods</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Use less common techniques that are harder to detect:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Modifying legitimate scheduled tasks instead of creating new ones.</li>
+                        <li>Leveraging obscure registry keys (e.g., HKCU\Environment variables).</li>
+                        <li>Creating WMI event subscriptions with rare triggers.</li>
+                        <li>Hiding payloads within legitimate binaries (living-off-the-land binaries).</li>
+                        <li>Establishing GPO changes with minimal modifications to existing scripts.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Deploy Persistence Stealthily</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Avoid high-noise actions that would trigger alerts from Day 18 tuning.</li>
+                <li>Spread deployments across multiple machines to increase survivability.</li>
+                <li>Randomize timing of persistence activation to avoid immediate detection.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Monitor Blue Team Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>As the red team, observe whether:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Persistence is detected through Sysmon, WEF, or PowerShell logging.</li>
+                        <li>Alerts are generated in near real time.</li>
+                        <li>Blue team isolates compromised machines or accounts promptly.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Blue Team Actions</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Hunt for:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Modifications to existing scheduled tasks.</li>
+                        <li>Registry changes outside previously monitored keys.</li>
+                        <li>WMI filters/consumers with uncommon event queries.</li>
+                        <li>Slight alterations to legitimate logon scripts.</li>
+                    </ul>
+                </li>
+                <li>Validate detection of persistence activation events.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Debrief and Adjust</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team: Document persistence methods used, stealth measures applied, and which remained undetected.</li>
+                <li>Blue team: Identify which new techniques bypassed detection and update hunting/detection coverage.</li>
+                <li>Jointly define countermeasures to block future re-entry attempts.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 19 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Red team deployed at least two creative persistence methods</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team detected and removed as many as possible</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Detection rules expanded to cover newly tested techniques</div>
+            </div>
+        </div>
+
+        <!-- Day 20 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week3-day20.html">Day 20 — Full-Scope Campaign Simulation</a></h2>
+            <p class="goal-text">
+                Goal: Conduct a multi-day, end-to-end red vs. blue simulation that incorporates reconnaissance, exploitation, privilege escalation, persistence, lateral movement, detection, hunting, and remediation — blending all skills from Days 1–19 into one continuous campaign.
+            </p>
+            <h3 class="step-heading">Step 1 — Campaign Planning</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red Team:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Design an attack storyline that unfolds over several simulated days.</li>
+                        <li>Include realistic dwell time between phases to mimic real adversaries.</li>
+                        <li>Blend noisy and stealthy tactics, mixing prior techniques with new variations.</li>
+                    </ul>
+                </li>
+                <li>Blue Team:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Prepare monitoring infrastructure with tuned rules from prior days.</li>
+                        <li>Establish an incident response timeline for the duration of the campaign.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Initial Access</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Use one or more methods from previous exercises:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Phishing simulation (lab-safe payload)</li>
+                        <li>Exploitation of a lab service</li>
+                        <li>Compromised standard domain credentials</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Reconnaissance and Enumeration</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Map out lab.local using:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Low-noise commands and PowerShell scripts from Day 11</li>
+                        <li>Target identification via BloodHound or manual queries</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Privilege Escalation and Lateral Movement</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Execute:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Kerberoasting or token abuse from Day 6</li>
+                        <li>PsExec, WinRM, or WMI pivoting from Day 4</li>
+                        <li>Movement to high-value targets (e.g., Domain Controller)</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Persistence Deployment</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Establish multiple persistence methods, including:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Registry keys, scheduled tasks, or WMI subscriptions</li>
+                        <li>GPO modifications for domain-wide impact</li>
+                        <li>One or more stealth persistence techniques from Day 19</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Blue Team Threat Hunting and Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Detect and disrupt:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Enumeration and escalation activities</li>
+                        <li>Persistence deployments</li>
+                        <li>Unusual logon patterns or privilege use</li>
+                    </ul>
+                </li>
+                <li>Use proactive hunts (Day 17) and persistence sweeps (Day 18)</li>
+            </ul>
+            <h3 class="step-heading">Step 7 — Campaign Climax and Containment</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team executes a final objective: Simulated data exfiltration, Ransomware-style encryption (lab-safe)</li>
+                <li>Blue team contains compromised systems and accounts.</li>
+            </ul>
+            <h3 class="step-heading">Step 8 — Joint Debrief</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team presents the full attack chain, including: Tactics, techniques, and procedures (TTPs), Timing and stealth considerations</li>
+                <li>Blue team presents detection points, gaps, and response metrics.</li>
+                <li>Collaboratively identify improvements for: Detection coverage, Incident response processes, Adversary emulation playbooks</li>
+            </ul>
+            <h3 class="step-heading">End of Day 20 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Complete multi-phase campaign executed without breaking lab integrity</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team detected and responded to multiple phases</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documented lessons learned and updated defenses for future simulations</div>
+            </div>
+        </div>
+
+        <!-- Day 21 -->
+        <div class="day-card">
+            <h2 class="day-title"><a href="cyber-week3-day21.html">Day 21 — After-Action Review & Improvement Plan</a></h2>
+            <p class="goal-text">
+                Goal: Analyze the full Day 1–20 Windows hacking bootcamp, evaluate red and blue team performance, identify skill gains and gaps, and create a roadmap for future advanced scenarios.
+            </p>
+            <h3 class="step-heading">Step 1 — Campaign Debrief Collection</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Gather all logs, screenshots, BloodHound data, and notes from Days 1–20.</li>
+                <li>Compile red team attack chains, blue team detection points, and missed indicators.</li>
+                <li>Ensure both sides share full details of tactics, techniques, and procedures (TTPs) used.</li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Performance Metrics Review</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Measure: Red team success rate in achieving objectives, Blue team detection rate and mean time to detect (MTTD), Blue team mean time to respond (MTTR) and contain (MTTC), Number of false positives vs. true positives.</li>
+                <li>Compare to Day 1 baseline capabilities.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Skill Gap Identification</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team: Identify areas where attacks were easily detected or failed.</li>
+                <li>Blue team: Identify undetected activities and delayed responses.</li>
+                <li>Prioritize gaps that had the largest operational impact.</li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Detection and Defense Updates</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Based on findings:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Expand Sysmon and PowerShell logging coverage.</li>
+                        <li>Adjust correlation rules for stealth techniques.</li>
+                        <li>Strengthen incident response workflows.</li>
+                    </ul>
+                </li>
+                <li>Document new detection logic and distribute to the team.</li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Offensive Strategy Refinement</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Develop new attack variations to bypass updated defenses.</li>
+                <li>Add novel persistence, escalation, and evasion methods to the red team playbook.</li>
+                <li>Plan for integrating real-world adversary TTPs from threat intelligence sources.</li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Roadmap for Next Training Cycle</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Schedule next month's advanced simulation series.</li>
+                <li>Include: More complex multi-stage intrusions, Larger simulated enterprise environments, Integration of cloud/hybrid infrastructure into attack/defense scenarios.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 21 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Comprehensive after-action report completed.</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Metrics and skill gap analysis documented.</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Updated detection and attack playbooks ready.</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Clear roadmap created for future advanced training cycles.</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week2.html" class="nav-button">← Week 2</a>
+            <a href="cyber-week4.html" class="nav-button">Week 4+ →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

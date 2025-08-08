@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 26 - Multi-Day Persistent Hybrid Threat Simulation | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; color: #374151; }
+        .container { max-width: 900px; }
+        .day-card { background-color: #ffffff; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); padding: 1.5rem; margin-bottom: 1.5rem; }
+        .day-title { font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 0.75rem; }
+        .goal-text { font-size: 1.125rem; font-weight: 600; color: #4b5563; margin-bottom: 1rem; }
+        .step-heading { font-size: 1.125rem; font-weight: 600; color: #1f2937; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .checklist-item { display: flex; align-items: center; margin-bottom: 0.5rem; }
+        .checklist-icon { color: #10b981; margin-right: 0.5rem; font-size: 1.25rem; }
+        a { color: #2563eb; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .nav-buttons { display: flex; justify-content: space-between; margin: 2rem 0; }
+        .nav-button { padding: 0.75rem 1.5rem; background-color: #2563eb; color: white; border-radius: 0.5rem; font-weight: 600; transition: background-color 0.2s; }
+        .nav-button:hover { background-color: #1d4ed8; text-decoration: none; }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">Day 26: Multi-Day Persistent Hybrid Threat Simulation</h1>
+            <p class="text-xl text-gray-700 leading-relaxed">Week 4+ - Hybrid Infrastructure & Grand Finale</p>
+        </header>
+        <div class="nav-buttons"><a href="cyber-week4-day25.html" class="nav-button">← Day 25</a><a href="cyber-week4-day27.html" class="nav-button">Day 27 →</a></div>
+        <div class="day-card">
+            <h2 class="day-title">Day 26 — Multi-Day Persistent Hybrid Threat Simulation</h2>
+            <p class="goal-text">Goal: Simulate a coordinated red team campaign lasting multiple days, with persistent access maintained in both cloud and on-prem environments, gradually expanding the attack footprint to test blue team endurance, detection consistency, and threat hunting capabilities under prolonged compromise.</p>
+            <h3 class="step-heading">Step 1 — Campaign Design (Red Team)</h3>
+            <ul class="list-disc list-inside ml-4"><li>Establish separate footholds in: <ul class="list-disc list-inside ml-4"><li>Cloud environment via compromised accounts, API tokens, or app registrations.</li><li>On-prem environment via local admin accounts, scheduled tasks, or WMI subscriptions.</li></ul></li><li>Plan gradual escalation over several days: <ul class="list-disc list-inside ml-4"><li>Day 1–2: Reconnaissance and light privilege escalation.</li><li>Day 3–4: Lateral movement and cross-environment pivots.</li><li>Day 5+: Persistence reinforcement and simulated data collection.</li></ul></li></ul>
+            <h3 class="step-heading">Step 2 — Blue Team Preparation</h3>
+            <ul class="list-disc list-inside ml-4"><li>Confirm logging and alerting systems can handle multi-day event collection.</li><li>Prepare threat hunting queries for: Long-term persistence detection, Gradual privilege creep, Anomalous cross-environment activity.</li><li>Establish daily review and response cadence.</li></ul>
+            <h3 class="step-heading">Step 3 — Red Team Execution</h3>
+            <ul class="list-disc list-inside ml-4"><li>Deploy persistence in both environments using stealthy techniques from previous exercises.</li><li>Conduct reconnaissance slowly to avoid detection, mixing in normal user-like behavior.</li><li>Periodically escalate privileges and pivot into new assets, maintaining operational stealth.</li><li>Simulate periodic "objective actions" such as accessing sensitive files or cloud storage.</li></ul>
+            <h3 class="step-heading">Step 4 — Blue Team Detection & Response</h3>
+            <ul class="list-disc list-inside ml-4"><li>Perform daily hunts for: <ul class="list-disc list-inside ml-4"><li>Persistence indicators in registry, scheduled tasks, and WMI subscriptions.</li><li>Cloud anomalies such as unusual sign-ins, API calls, or admin role changes.</li><li>Hybrid authentication patterns and cross-boundary logons.</li></ul></li><li>Contain compromised accounts or systems promptly without disrupting ongoing monitoring.</li></ul>
+            <h3 class="step-heading">Step 5 — Campaign Endgame</h3>
+            <ul class="list-disc list-inside ml-4"><li>Red team stages a final simulated exfiltration or destructive action.</li><li>Blue team attempts full containment and eradication of all red team footholds.</li></ul>
+            <h3 class="step-heading">Step 6 — Debrief</h3>
+            <ul class="list-disc list-inside ml-4"><li>Red team: Present full campaign timeline, including stealth measures and persistence strategies.</li><li>Blue team: Present detection timeline, daily hunt effectiveness, and final eradication results.</li><li>Jointly identify endurance-related gaps and improvements.</li></ul>
+            <h3 class="step-heading">End of Day 26 Success Criteria:</h3>
+            <div class="ml-4"><div class="checklist-item"><span class="checklist-icon">✅</span>Persistent access maintained by red team for the planned duration</div><div class="checklist-item"><span class="checklist-icon">✅</span>Blue team actively hunted and disrupted red team activity throughout</div><div class="checklist-item"><span class="checklist-icon">✅</span>Documented improvements to long-term monitoring and incident response strategies</div></div>
+        </div>
+        <div class="nav-buttons"><a href="cyber-week4-day25.html" class="nav-button">← Day 25</a><a href="cyber-week4-day27.html" class="nav-button">Day 27 →</a></div>
+        <footer class="mt-12 text-center text-gray-600"><p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p></footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 29 - Long-Game Deception Operation | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; color: #374151; }
+        .container { max-width: 900px; }
+        .day-card { background-color: #ffffff; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); padding: 1.5rem; margin-bottom: 1.5rem; }
+        .day-title { font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 0.75rem; }
+        .goal-text { font-size: 1.125rem; font-weight: 600; color: #4b5563; margin-bottom: 1rem; }
+        .step-heading { font-size: 1.125rem; font-weight: 600; color: #1f2937; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .checklist-item { display: flex; align-items: center; margin-bottom: 0.5rem; }
+        .checklist-icon { color: #10b981; margin-right: 0.5rem; font-size: 1.25rem; }
+        a { color: #2563eb; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .nav-buttons { display: flex; justify-content: space-between; margin: 2rem 0; }
+        .nav-button { padding: 0.75rem 1.5rem; background-color: #2563eb; color: white; border-radius: 0.5rem; font-weight: 600; transition: background-color 0.2s; }
+        .nav-button:hover { background-color: #1d4ed8; text-decoration: none; }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">Day 29: Long-Game Deception Operation</h1>
+            <p class="text-xl text-gray-700 leading-relaxed">Week 4+ - Hybrid Infrastructure & Grand Finale</p>
+        </header>
+        <div class="nav-buttons"><a href="cyber-week4-day28.html" class="nav-button">← Day 28</a><a href="cyber-week4-day30.html" class="nav-button">Day 30 →</a></div>
+        <div class="day-card">
+            <h2 class="day-title">Day 29 — Long-Game Deception Operation</h2>
+            <p class="goal-text">Goal: Test the blue team's ability to detect and respond to extremely subtle, low-activity red team footholds designed to blend seamlessly with legitimate operations over an extended period.</p>
+            <h3 class="step-heading">Step 1 — Red Team Strategy</h3>
+            <ul class="list-disc list-inside ml-4"><li>Establish persistence mechanisms that mimic normal user or system behavior: <ul class="list-disc list-inside ml-4"><li>Scheduled tasks disguised as legitimate maintenance jobs.</li><li>Registry entries under names matching standard OS or application keys.</li><li>Cloud automation scripts with benign-appearing descriptions.</li></ul></li><li>Space out activity to avoid triggering pattern-based alerts.</li><li>Use legitimate tools (LOLBins) and processes for execution.</li></ul>
+            <h3 class="step-heading">Step 2 — Blue Team Preparation</h3>
+            <ul class="list-disc list-inside ml-4"><li>Expand anomaly detection baselines to include long-term behavior patterns.</li><li>Enable advanced logging: <ul class="list-disc list-inside ml-4"><li>Sysmon with detailed process and network event capture.</li><li>Cloud service activity logs with historical trend analysis.</li></ul></li><li>Prepare for multi-week hunts with periodic log reviews.</li></ul>
+            <h3 class="step-heading">Step 3 — Red Team Execution</h3>
+            <ul class="list-disc list-inside ml-4"><li>Deploy persistence points that activate rarely (e.g., once every few days).</li><li>Conduct minimal reconnaissance at random intervals.</li><li>Use data staging methods that appear like standard file transfers or backups.</li><li>Avoid privilege escalation unless absolutely necessary to maintain access.</li></ul>
+            <h3 class="step-heading">Step 4 — Blue Team Threat Hunting</h3>
+            <ul class="list-disc list-inside ml-4"><li>Perform scheduled deep-dive hunts into: <ul class="list-disc list-inside ml-4"><li>Rarely used scheduled tasks or registry entries.</li><li>Cloud automation scripts or policies with recent modifications.</li><li>Processes that run infrequently but consistently over time.</li></ul></li><li>Compare findings against baseline behaviors to identify outliers.</li></ul>
+            <h3 class="step-heading">Step 5 — Containment and Verification</h3>
+            <ul class="list-disc list-inside ml-4"><li>Isolate suspected persistence mechanisms for further analysis.</li><li>Remove confirmed malicious footholds while monitoring for fallback methods.</li><li>Conduct a post-removal watch period to ensure no reactivation occurs.</li></ul>
+            <h3 class="step-heading">Step 6 — Debrief</h3>
+            <ul class="list-disc list-inside ml-4"><li>Red team: Share concealment techniques, timing patterns, and methods that went undetected.</li><li>Blue team: Present anomalies found, detection gaps, and time to discovery.</li><li>Update detection rules to better spot low-frequency, low-noise activity.</li></ul>
+            <h3 class="step-heading">End of Day 29 Success Criteria:</h3>
+            <div class="ml-4"><div class="checklist-item"><span class="checklist-icon">✅</span>Blue team identified and eradicated long-term low-activity footholds</div><div class="checklist-item"><span class="checklist-icon">✅</span>Detection coverage improved for rare or disguised malicious activity</div><div class="checklist-item"><span class="checklist-icon">✅</span>Documented strategies for both defending against and executing long-game deception</div></div>
+        </div>
+        <div class="nav-buttons"><a href="cyber-week4-day28.html" class="nav-button">← Day 28</a><a href="cyber-week4-day30.html" class="nav-button">Day 30 →</a></div>
+        <footer class="mt-12 text-center text-gray-600"><p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p></footer>
+    </div>
+</body>
+</html>

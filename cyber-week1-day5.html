@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5 - Active Directory Enumeration with BloodHound & PowerView | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 5: Active Directory Enumeration with BloodHound & PowerView
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 1 - Foundation & Setup
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1-day4.html" class="nav-button">← Day 4</a>
+            <a href="cyber-week1-day6.html" class="nav-button">Day 6 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 5 — Active Directory Enumeration with BloodHound & PowerView</h2>
+            <p class="goal-text">
+                Goal: Use your Kali attacker machine to perform your first domain reconnaissance against the lab.local environment, mapping relationships and identifying attack paths.
+            </p>
+            <h3 class="step-heading">Step 1 — Prepare Kali for BloodHound</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Start <code class="bg-gray-100 p-1 rounded">Neo4j</code> database:<br><code class="bg-gray-100 p-1 rounded">sudo neo4j console</code><br>Default login: <code class="bg-gray-100 p-1 rounded">neo4j / neo4j</code> (you will be prompted to change this)</li>
+                <li>Launch BloodHound:<br><code class="bg-gray-100 p-1 rounded">bloodhound &</code></li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Collect Data with SharpHound</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Copy SharpHound.exe from Kali to the Windows 10 target:<br><code class="bg-gray-100 p-1 rounded">sudo cp /usr/share/bloodhound/collectors/SharpHound.exe /var/www/html/</code><br>(or share via SMB/HTTP)</li>
+                <li>On Windows 10 (as a domain user), run:<br><code class="bg-gray-100 p-1 rounded">.\SharpHound.exe -c All</code><br>This will create a .zip file with collected data.</li>
+                <li>Transfer the .zip back to Kali.</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Import Data into BloodHound</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>In BloodHound GUI, log in with your Neo4j credentials.</li>
+                <li>Drag and drop the SharpHound .zip into the interface.</li>
+                <li>Explore built-in queries like:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>"Find all Domain Admins"</li>
+                        <li>"Shortest paths to Domain Admins"</li>
+                        <li>"Users with unconstrained delegation"</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Enumerate with PowerView</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>On the Windows 10 target (domain joined), load PowerView:<br><code class="bg-gray-100 p-1 rounded">Import-Module .\PowerView.ps1</code></li>
+                <li>Useful commands:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Get current domain info:<br><code class="bg-gray-100 p-1 rounded">Get-Domain</code></li>
+                        <li>List domain users:<br><code class="bg-gray-100 p-1 rounded">Get-DomainUser</code></li>
+                        <li>List domain computers:<br><code class="bg-gray-100 p-1 rounded">Get-DomainComputer</code></li>
+                        <li>List domain groups:<br><code class="bg-gray-100 p-1 rounded">Get-DomainGroup</code></li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Document Findings</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Record any high-value accounts, misconfigurations, or interesting group memberships.</li>
+                <li>Note shortest attack paths from BloodHound for later exploitation.</li>
+            </ul>
+            <h3 class="step-heading">End of Day 5 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>SharpHound executed and data imported into BloodHound</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>PowerView used to enumerate domain users, computers, and groups</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>At least one potential attack path identified</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1-day4.html" class="nav-button">← Day 4</a>
+            <a href="cyber-week1-day6.html" class="nav-button">Day 6 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

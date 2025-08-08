@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 28 - Post-Eviction Resilience Test | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; color: #374151; }
+        .container { max-width: 900px; }
+        .day-card { background-color: #ffffff; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); padding: 1.5rem; margin-bottom: 1.5rem; }
+        .day-title { font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 0.75rem; }
+        .goal-text { font-size: 1.125rem; font-weight: 600; color: #4b5563; margin-bottom: 1rem; }
+        .step-heading { font-size: 1.125rem; font-weight: 600; color: #1f2937; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .checklist-item { display: flex; align-items: center; margin-bottom: 0.5rem; }
+        .checklist-icon { color: #10b981; margin-right: 0.5rem; font-size: 1.25rem; }
+        a { color: #2563eb; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .nav-buttons { display: flex; justify-content: space-between; margin: 2rem 0; }
+        .nav-button { padding: 0.75rem 1.5rem; background-color: #2563eb; color: white; border-radius: 0.5rem; font-weight: 600; transition: background-color 0.2s; }
+        .nav-button:hover { background-color: #1d4ed8; text-decoration: none; }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">Day 28: Post-Eviction Resilience Test</h1>
+            <p class="text-xl text-gray-700 leading-relaxed">Week 4+ - Hybrid Infrastructure & Grand Finale</p>
+        </header>
+        <div class="nav-buttons"><a href="cyber-week4-day27.html" class="nav-button">← Day 27</a><a href="cyber-week4-day29.html" class="nav-button">Day 29 →</a></div>
+        <div class="day-card">
+            <h2 class="day-title">Day 28 — Post-Eviction Resilience Test</h2>
+            <p class="goal-text">Goal: Simulate a delayed red team comeback after the Day 27 eviction, using new tactics to attempt re-infection of the hybrid environment. Test whether the blue team's updated defenses and procedures can prevent reinfection and maintain a clean security posture.</p>
+            <h3 class="step-heading">Step 1 — Red Team Preparation</h3>
+            <ul class="list-disc list-inside ml-4"><li>Review detection gaps or slow response areas noted during Day 27.</li><li>Design new persistence and access methods not used previously: <ul class="list-disc list-inside ml-4"><li>Exploiting overlooked cloud API permissions.</li><li>Leveraging legitimate third-party integrations.</li><li>Using non-traditional autorun locations.</li></ul></li><li>Plan for low-noise re-entry to avoid triggering immediate alerts.</li></ul>
+            <h3 class="step-heading">Step 2 — Blue Team Readiness Check</h3>
+            <ul class="list-disc list-inside ml-4"><li>Re-verify that updated detection rules from Day 27 are active.</li><li>Ensure monitoring is live for: Newly added event IDs or Sysmon filters, Expanded registry and scheduled task coverage, Cloud API and identity event monitoring.</li><li>Set up a quick-response containment plan for suspected reinfection attempts.</li></ul>
+            <h3 class="step-heading">Step 3 — Red Team Re-Entry Attempt</h3>
+            <ul class="list-disc list-inside ml-4"><li>Deploy stealth access vectors in both cloud and on-prem.</li><li>Attempt to create new persistence that mimics legitimate system behavior.</li><li>Slowly escalate privileges while blending in with normal user activity.</li></ul>
+            <h3 class="step-heading">Step 4 — Blue Team Detection & Response</h3>
+            <ul class="list-disc list-inside ml-4"><li>Actively hunt for anomalies: <ul class="list-disc list-inside ml-4"><li>Cloud logins from unexpected geolocations or devices.</li><li>Low-frequency but suspicious process executions.</li><li>Persistence methods in unusual registry paths or script folders.</li></ul></li><li>Respond quickly to any confirmed foothold attempts: Disable affected accounts, Remove malicious persistence, Isolate endpoints.</li></ul>
+            <h3 class="step-heading">Step 5 — Verification</h3>
+            <ul class="list-disc list-inside ml-4"><li>After red team operations conclude, perform a full hybrid persistence sweep.</li><li>Cross-check cloud and on-prem systems for missed access methods.</li><li>Validate that no red team footholds remain.</li></ul>
+            <h3 class="step-heading">Step 6 — Debrief</h3>
+            <ul class="list-disc list-inside ml-4"><li>Red team: Share which methods were attempted, which were detected, and which (if any) evaded detection.</li><li>Blue team: Present detection successes, gaps, and response times.</li><li>Jointly update defenses to address any remaining weaknesses.</li></ul>
+            <h3 class="step-heading">End of Day 28 Success Criteria:</h3>
+            <div class="ml-4"><div class="checklist-item"><span class="checklist-icon">✅</span>Blue team prevented or quickly removed all new red team footholds</div><div class="checklist-item"><span class="checklist-icon">✅</span>No undetected persistence methods remain after verification</div><div class="checklist-item"><span class="checklist-icon">✅</span>Updated defenses reflect lessons learned from post-eviction testing</div></div>
+        </div>
+        <div class="nav-buttons"><a href="cyber-week4-day27.html" class="nav-button">← Day 27</a><a href="cyber-week4-day29.html" class="nav-button">Day 29 →</a></div>
+        <footer class="mt-12 text-center text-gray-600"><p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p></footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 20 - Full-Scope Campaign Simulation | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 20: Full-Scope Campaign Simulation
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 3 - Advanced Simulations & Threat Hunting
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week3-day19.html" class="nav-button">← Day 19</a>
+            <a href="cyber-week3-day21.html" class="nav-button">Day 21 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 20 — Full-Scope Campaign Simulation</h2>
+            <p class="goal-text">
+                Goal: Conduct a multi-day, end-to-end red vs. blue simulation that incorporates reconnaissance, exploitation, privilege escalation, persistence, lateral movement, detection, hunting, and remediation — blending all skills from Days 1–19 into one continuous campaign.
+            </p>
+            <h3 class="step-heading">Step 1 — Campaign Planning</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red Team:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Design an attack storyline that unfolds over several simulated days.</li>
+                        <li>Include realistic dwell time between phases to mimic real adversaries.</li>
+                        <li>Blend noisy and stealthy tactics, mixing prior techniques with new variations.</li>
+                    </ul>
+                </li>
+                <li>Blue Team:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Prepare monitoring infrastructure with tuned rules from prior days.</li>
+                        <li>Establish an incident response timeline for the duration of the campaign.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Initial Access</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Use one or more methods from previous exercises:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Phishing simulation (lab-safe payload)</li>
+                        <li>Exploitation of a lab service</li>
+                        <li>Compromised standard domain credentials</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Reconnaissance and Enumeration</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Map out lab.local using:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Low-noise commands and PowerShell scripts from Day 11</li>
+                        <li>Target identification via BloodHound or manual queries</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Privilege Escalation and Lateral Movement</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Execute:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Kerberoasting or token abuse from Day 6</li>
+                        <li>PsExec, WinRM, or WMI pivoting from Day 4</li>
+                        <li>Movement to high-value targets (e.g., Domain Controller)</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Persistence Deployment</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Establish multiple persistence methods, including:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Registry keys, scheduled tasks, or WMI subscriptions</li>
+                        <li>GPO modifications for domain-wide impact</li>
+                        <li>One or more stealth persistence techniques from Day 19</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="step-heading">Step 6 — Blue Team Threat Hunting and Response</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Detect and disrupt:
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Enumeration and escalation activities</li>
+                        <li>Persistence deployments</li>
+                        <li>Unusual logon patterns or privilege use</li>
+                    </ul>
+                </li>
+                <li>Use proactive hunts (Day 17) and persistence sweeps (Day 18)</li>
+            </ul>
+            <h3 class="step-heading">Step 7 — Campaign Climax and Containment</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team executes a final objective: Simulated data exfiltration, Ransomware-style encryption (lab-safe)</li>
+                <li>Blue team contains compromised systems and accounts.</li>
+            </ul>
+            <h3 class="step-heading">Step 8 — Joint Debrief</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Red team presents the full attack chain, including: Tactics, techniques, and procedures (TTPs), Timing and stealth considerations</li>
+                <li>Blue team presents detection points, gaps, and response metrics.</li>
+                <li>Collaboratively identify improvements for: Detection coverage, Incident response processes, Adversary emulation playbooks</li>
+            </ul>
+            <h3 class="step-heading">End of Day 20 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Complete multi-phase campaign executed without breaking lab integrity</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Blue team detected and responded to multiple phases</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Documented lessons learned and updated defenses for future simulations</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week3-day19.html" class="nav-button">← Day 19</a>
+            <a href="cyber-week3-day21.html" class="nav-button">Day 21 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

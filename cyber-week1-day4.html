@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4 - Join Windows 10 Target to the Active Directory Domain | 30-Day Hybrid Cybersecurity Lab Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+        .goal-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        .step-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checklist-icon {
+            color: #10b981;
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #1d4ed8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 rounded-xl p-4 bg-white shadow-lg">
+                Day 4: Join Windows 10 Target to the Active Directory Domain
+            </h1>
+            <p class="text-xl text-gray-700 leading-relaxed">
+                Week 1 - Foundation & Setup
+            </p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1-day3.html" class="nav-button">← Day 3</a>
+            <a href="cyber-week1-day5.html" class="nav-button">Day 5 →</a>
+        </div>
+
+        <div class="day-card">
+            <h2 class="day-title">Day 4 — Join Windows 10 Target to the Active Directory Domain</h2>
+            <p class="goal-text">
+                Goal: Connect the Windows 10 Pro target machine to the lab.local domain hosted on your Windows Server 2019 Domain Controller, verify domain membership, and prepare for Active Directory enumeration.
+            </p>
+            <h3 class="step-heading">Step 1 — Set Windows 10 DNS to the Domain Controller</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>On the Windows 10 target: Go to <code class="bg-gray-100 p-1 rounded">Control Panel → Network and Sharing Center → Change adapter settings</code></li>
+                <li>Right-click the Host-Only adapter → <code class="bg-gray-100 p-1 rounded">Properties</code></li>
+                <li>Select <code class="bg-gray-100 p-1 rounded">Internet Protocol Version 4 (TCP/IPv4)</code> → <code class="bg-gray-100 p-1 rounded">Properties</code></li>
+                <li>Set: Preferred DNS Server: <code class="bg-gray-100 p-1 rounded">192.168.56.20</code> (DC's IP)</li>
+                <li>Alternate DNS: <code class="bg-gray-100 p-1 rounded">leave blank</code></li>
+            </ul>
+            <h3 class="step-heading">Step 2 — Join the Domain</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Press Win + R, type <code class="bg-gray-100 p-1 rounded">sysdm.cpl</code>, and press Enter</li>
+                <li>Go to the <code class="bg-gray-100 p-1 rounded">Computer Name</code> tab</li>
+                <li>Click <code class="bg-gray-100 p-1 rounded">Change…</code></li>
+                <li>Under <code class="bg-gray-100 p-1 rounded">Member of</code>, select <code class="bg-gray-100 p-1 rounded">Domain</code> and enter: <code class="bg-gray-100 p-1 rounded">lab.local</code></li>
+                <li>Click <code class="bg-gray-100 p-1 rounded">OK</code></li>
+                <li>When prompted, enter the domain admin username and password created on the DC during Day 3</li>
+                <li>If successful, you'll see a "Welcome to the lab.local domain" message</li>
+            </ul>
+            <h3 class="step-heading">Step 3 — Restart the Windows 10 Target</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Reboot is required to apply domain membership changes</li>
+                <li>At the login screen, click <code class="bg-gray-100 p-1 rounded">Other user</code> and log in using a domain account:<br><code class="bg-gray-100 p-1 rounded">lab\\Administrator</code><code class="bg-gray-100 p-1 rounded">&lt;password&gt;</code></li>
+            </ul>
+            <h3 class="step-heading">Step 4 — Verify Domain Membership</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Open Command Prompt and run:<br><code class="bg-gray-100 p-1 rounded">systeminfo | findstr /B /C:"Domain"</code></li>
+                <li>You should see:<br><code class="bg-gray-100 p-1 rounded">Domain: lab.local</code></li>
+                <li>You can also run:<br><code class="bg-gray-100 p-1 rounded">whoami</code><br>and confirm the format: <code class="bg-gray-100 p-1 rounded">lab\\username</code></li>
+            </ul>
+            <h3 class="step-heading">Step 5 — Test Connectivity</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Ping DC by hostname:<br><code class="bg-gray-100 p-1 rounded">ping win2019-ad.lab.local</code></li>
+                <li>Run DNS resolution check:<br><code class="bg-gray-100 p-1 rounded">nslookup win2019-ad.lab.local</code></li>
+            </ul>
+            <h3 class="step-heading">End of Day 4 Success Criteria:</h3>
+            <div class="ml-4">
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Windows 10 target is joined to lab.local</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>DNS points to DC (192.168.56.20)</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Domain logins work</div>
+                <div class="checklist-item"><span class="checklist-icon">✅</span>Hostname and DNS resolution confirmed</div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="cyber-week1-day3.html" class="nav-button">← Day 3</a>
+            <a href="cyber-week1-day5.html" class="nav-button">Day 5 →</a>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600">
+            <p>&copy; 2024 Hybrid Cybersecurity Lab Plan. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
